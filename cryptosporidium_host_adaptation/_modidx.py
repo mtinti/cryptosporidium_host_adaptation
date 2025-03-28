@@ -5,4 +5,7 @@ d = { 'settings': { 'branch': 'main',
                 'doc_host': 'https://mtinti.github.io',
                 'git_url': 'https://github.com/mtinti/cryptosporidium_host_adaptation',
                 'lib_path': 'cryptosporidium_host_adaptation'},
-  'syms': {'cryptosporidium_host_adaptation.core': {}}}
+  'syms': { 'cryptosporidium_host_adaptation.core': { 'cryptosporidium_host_adaptation.core.count_variants': ( 'core.html#count_variants',
+                                                                                                               'cryptosporidium_host_adaptation/core.py'),
+                                                      'cryptosporidium_host_adaptation.core.filter_variants': ( 'core.html#filter_variants',
+                                                                                                                'cryptosporidium_host_adaptation/core.py')}}}
