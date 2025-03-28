@@ -5,5 +5,4 @@ d = { 'settings': { 'branch': 'main',
                 'doc_host': 'https://mtinti.github.io',
                 'git_url': 'https://github.com/mtinti/cryptosporidium_host_adaptation',
                 'lib_path': 'cryptosporidium_host_adaptation'},
-  'syms': { 'cryptosporidium_host_adaptation.core': { 'cryptosporidium_host_adaptation.core.foo': ( 'core.html#foo',
-                                                                                                    'cryptosporidium_host_adaptation/core.py')}}}
+  'syms': {'cryptosporidium_host_adaptation.core': {}}}
