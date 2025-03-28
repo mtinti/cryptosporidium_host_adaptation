@@ -152,11 +152,14 @@ df_vcf = read_vcf(vcf_file)
 print(f'step 1: {df_vcf.shape}')
 df_vcf=df_vcf[(df_vcf['REF']!='N')]
 print(f'step 2: {df_vcf.shape}')
-df_vcf.head()
 ```
 
     step 1: (1256, 16)
     step 2: (945, 16)
+
+``` python
+df_vcf.head()
+```
 
 <div>
 <style scoped>
@@ -181,6 +184,244 @@ df_vcf.head()
 
 </div>
 
+## 📝 From VCF Fields to counting reads for each allele
+
+``` python
+┌─────────────────────────────────────────────────────────┐
+│ ALLELE FREQUENCY CALCULATION COMPONENTS                 │
+├─────────────────────────────────────────────────────────┤
+│ RO: Reference Allele Observation count                  │
+│ AO: Alternate Allele Observation count                  │
+│ DP: Total Read Depth at position                        │
+│                                                         │
+│ Allele Frequency = AO / DP                              │
+└─────────────────────────────────────────────────────────┘
+```
+
+``` python
+df_allele_counts = expand_multiallelic_variants(df_vcf)
+df_allele_counts.to_csv("../data/allele_counts_expanded.tsv", sep="\t", index=False)
+print("✅ Extracted and expanded allele counts saved to allele_counts_expanded.tsv")
+```
+
+    ✅ Extracted and expanded allele counts saved to allele_counts_expanded.tsv
+
+``` python
+df_allele_counts.head()
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&#10;    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&#10;    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|  | \#CHROM | POS | REF | ALT | RO_M7 | DP_M7 | AO_M7 | RO_M5 | DP_M5 | AO_M5 | ... | AO_M6 | RO_C3 | DP_C3 | AO_C3 | RO_C2 | DP_C2 | AO_C2 | RO_C1 | DP_C1 | AO_C1 |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| 0 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAGATTT | 9 | 82 | 2 | 3 | 46 | 2 | ... | 2 | 5 | 57 | 1 | 1 | 69 | 0 | 4 | 62 | 1 |
+| 1 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAGATAT | 9 | 82 | 67 | 3 | 46 | 35 | ... | 62 | 5 | 57 | 45 | 1 | 69 | 60 | 4 | 62 | 50 |
+| 2 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAAGATAT | 9 | 82 | 2 | 3 | 46 | 1 | ... | 1 | 5 | 57 | 1 | 1 | 69 | 4 | 4 | 62 | 4 |
+| 3 | CM000429 | 60889 | ACCCCACT | ACCCCCACT | 9 | 90 | 81 | 1 | 53 | 50 | ... | 70 | 5 | 45 | 40 | 1 | 68 | 66 | 4 | 69 | 62 |
+| 4 | CM000429 | 76625 | A | G | 76 | 104 | 28 | 52 | 80 | 28 | ... | 28 | 36 | 83 | 47 | 78 | 112 | 34 | 63 | 112 | 49 |
+
+<p>5 rows × 25 columns</p>
+</div>
+
+``` python
+df_af = compute_frequencies(df_allele_counts)
+df_af.to_csv("../data/allele_frequencies.tsv", sep="\t", index=False)
+print("✅ Allele frequencies saved to allele_frequencies.tsv")
+```
+
+    ✅ Allele frequencies saved to allele_frequencies.tsv
+
+``` python
+df_af.head()
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&#10;    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&#10;    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|  | \#CHROM | POS | REF | ALT | AF_M7 | AF_M5 | AF_M4 | AF_M6 | AF_C3 | AF_C2 | AF_C1 |
+|----|----|----|----|----|----|----|----|----|----|----|----|
+| 0 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAGATTT | 0.024390 | 0.043478 | 0.057971 | 0.024390 | 0.017544 | 0.000000 | 0.016129 |
+| 1 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAGATAT | 0.817073 | 0.760870 | 0.855072 | 0.756098 | 0.789474 | 0.869565 | 0.806452 |
+| 2 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAAGATAT | 0.024390 | 0.021739 | 0.014493 | 0.012195 | 0.017544 | 0.057971 | 0.064516 |
+| 3 | CM000429 | 60889 | ACCCCACT | ACCCCCACT | 0.900000 | 0.943396 | 0.942857 | 0.853659 | 0.888889 | 0.970588 | 0.898551 |
+| 4 | CM000429 | 76625 | A | G | 0.269231 | 0.350000 | 0.404762 | 0.314607 | 0.566265 | 0.303571 | 0.437500 |
+
+</div>
+
+## 🔍 Frequency Distribution Analysis
+
+> With our extracted allele frequencies in hand, we could now explore
+> how these frequencies were distributed across our samples
+
+``` python
+fig,ax=plt.subplots(figsize=(8,4))
+data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
+tmp = pd.Series(data.iloc[:,4:].values.flatten())
+tmp.name='All Samples'
+tmp.plot(kind='hist',histtype='step',bins=50,ax=ax)
+ax.set_xlabel('Alternate Allele Frequency')
+ax.set_ylabel('Counts')
+mod_hist_legend(ax)
+clean_axes(ax)
+plt.show()
+```
+
+![](index_files/figure-commonmark/cell-10-output-1.png)
+
+- **Expected in clonal samples**: Frequencies clustered at extremes (0
+  or 1)
+  - 0: Reference allele only
+  - 1: Alternative allele only
+
+> *“The presence of allele frequencies distinctly deviating from the
+> expected 0/1 pattern confirms our hypothesis that mouse M4 harbors a
+> heterogeneous Cryptosporidium population with multiple strains
+> coexisting”*
+
+# 🔬 Focusing on Single Nucleotide Variants
+
+> To gain deeper insight into the evolutionary dynamics of our
+> Cryptosporidium populations, we narrowed our analysis to focus
+> specifically on Single Nucleotide Variants (SNVs)—the most abundant
+> and interpretable form of genetic variation.
+
+``` python
+┌─────────────────────────────────────────────────────────┐
+│ SNV CLUSTERING WORKFLOW                                 │
+├─────────────────────────────────────────────────────────┤
+│ 1. Filter dataset to retain only SNVs                   │    
+│ 2. Normalize frequencies (divide by max frequency)      │
+│ 4. Include only variants with >30% frequency            │
+│    difference between any two samples                   │
+│ 5. Perform hierarchical clustering                      │
+│ 6. Visualize dendrogram                                 │
+└─────────────────────────────────────────────────────────┘
+```
+
+``` python
+data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
+print(f'step 1 starting variants: {data.shape}')
+data=data[(data['ALT'].str.len()==1)]
+print(f'step 2 only snv variants: {data.shape}')
+
+clustering_data = data[['AF_M7', 'AF_M5', 'AF_M6', 'AF_M4','AF_C3', 'AF_C2', 'AF_C1']]
+clustering_data = clustering_data.divide(clustering_data.max(axis=1),axis=0)
+clustering_max=clustering_data.max(axis=1)
+clustering_min=clustering_data.min(axis=1)
+clustering_data = clustering_data[(clustering_max-clustering_min)>0.3]
+print('selected variants:', clustering_data.shape)
+sns.clustermap(clustering_data,cmap='Blues',figsize=(4,6))
+plt.savefig('../data/Allele_Frequency_SNVs.svg')
+plt.savefig('../data/Allele_Frequency_SNVs.png')
+```
+
+    step 1 starting variants: (1937, 11)
+    step 2 only snv variants: (511, 11)
+    selected variants: (129, 7)
+
+![](index_files/figure-commonmark/cell-11-output-2.png)
+
+## 🧬 Distinct Evolutionary Trajectories Revealed
+
+The hierarchical clustering dendrogram revealed several patterns:
+
+1.  **Clear Host-Species Separation**: \> *“The clustering segregated
+    bovine and murine samples, suggesting host specific pressure on the
+    Cryptosporidium population.”*
+
+2.  **Temporal Evolution in Murine Hosts**: \> *“The murine samples
+    displayed a clear temporal progression, with M6 and M7 clustering
+    distinctly from the earlier passages (M4-M5).”*
+
+3.  **Similarity Between Early Murine and Bovine Samples**: \> *“The
+    three bovine samples (C1-C3) showed greater similarity to the early
+    murine passages (M4-M5) than to the later murine passages (M6-M7).
+    Bovine adaptation might be slower to kick in.”*
+
+# 🔬 Focusing on INDELS
+
+> Having established clear evolutionary patterns through SNV analysis,
+> we extended our investigation to insertions and deletions (INDELs)
+> using the same strategy
+
+``` python
+data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
+print(f'step 1 starting variants: {data.shape}')
+data=data[(data['ALT'].str.len()!=1)]
+print(f'step 2 only snv variants: {data.shape}')
+
+clustering_data = data[['AF_M7', 'AF_M5', 'AF_M6', 'AF_M4','AF_C3', 'AF_C2', 'AF_C1']]
+clustering_data = clustering_data.divide(clustering_data.max(axis=1),axis=0)
+clustering_max=clustering_data.max(axis=1)
+clustering_min=clustering_data.min(axis=1)
+clustering_data = clustering_data[(clustering_max-clustering_min)>0.3]
+print('selected variants:', clustering_data.shape)
+sns.clustermap(clustering_data,cmap='Blues',figsize=(4,6))
+plt.savefig('../data/Allele_Frequency_INDELs.svg')
+plt.savefig('../data/Allele_Frequency_INDELs.png')
+```
+
+    step 1 starting variants: (1937, 11)
+    step 2 only snv variants: (1426, 11)
+    selected variants: (1143, 7)
+
+![](index_files/figure-commonmark/cell-12-output-2.png)
+
+## 🔍 Distinct Clustering Patterns in INDELs
+
+> When applying our clustering strategy to INDELs, we observed
+> strikingly different patterns from those seen with SNVs
+
+> *“The most striking feature of our INDEL analysis is the emergence of
+> sample specific variant clusters”* or in ther words, sample specific
+> groups of INDELs
+
+# Genome-Wide Distribution: Mapping Variants Across the Cryptosporidium Genome
+
+## 🔍 Taking a Broader Perspective
+
+> Having explored the dynamics of both SNVs and INDELs through
+> clustering analyses, we stepped back to examine the holistic picture
+> of where these variants are distributed across the Cryptosporidium
+> genome.
+
+``` python
+data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
+make_circos_plot(data)
+```
+
+![](index_files/figure-commonmark/cell-13-output-1.png)
+
+## 🧬 Genomic Distribution Patterns
+
+The circular genome plot revealed several striking patterns:
+
+> *“The distribution of variants across the Cryptosporidium genome is
+> strikingly non-random, with clear hotspots of both SNVs and INDELs
+> congregating in specific genomic regions other then close to the
+> telomers.”*
+
 ### Reproducibility
 
 Install latest from the GitHub
@@ -188,18 +429,4 @@ Install latest from the GitHub
 
 ``` sh
 $ pip install git+https://github.com/mtinti/cryptosporidium_host_adaptation.git
-```
-
-or from
-[conda](https://anaconda.org/mtinti/cryptosporidium_host_adaptation)
-
-``` sh
-$ conda install -c mtinti cryptosporidium_host_adaptation
-```
-
-or from
-[pypi](https://pypi.org/project/cryptosporidium_host_adaptation/)
-
-``` sh
-$ pip install cryptosporidium_host_adaptation
 ```
