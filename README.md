@@ -303,8 +303,7 @@ plt.show()
 
 > To gain deeper insight into the evolutionary dynamics of our
 > Cryptosporidium populations, we narrowed our analysis to focus
-> specifically on Single Nucleotide Variants (SNVs)—the most abundant
-> and interpretable form of genetic variation.
+> specifically on Single Nucleotide Variants (SNVs).
 
 ``` python
 ┌─────────────────────────────────────────────────────────┐
