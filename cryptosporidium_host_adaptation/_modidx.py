@@ -7,5 +7,11 @@ d = { 'settings': { 'branch': 'main',
                 'lib_path': 'cryptosporidium_host_adaptation'},
   'syms': { 'cryptosporidium_host_adaptation.core': { 'cryptosporidium_host_adaptation.core.count_variants': ( 'core.html#count_variants',
                                                                                                                'cryptosporidium_host_adaptation/core.py'),
+                                                      'cryptosporidium_host_adaptation.core.expand_multiallelic_variants': ( 'core.html#expand_multiallelic_variants',
+                                                                                                                             'cryptosporidium_host_adaptation/core.py'),
                                                       'cryptosporidium_host_adaptation.core.filter_variants': ( 'core.html#filter_variants',
-                                                                                                                'cryptosporidium_host_adaptation/core.py')}}}
+                                                                                                                'cryptosporidium_host_adaptation/core.py'),
+                                                      'cryptosporidium_host_adaptation.core.find_index': ( 'core.html#find_index',
+                                                                                                           'cryptosporidium_host_adaptation/core.py'),
+                                                      'cryptosporidium_host_adaptation.core.read_vcf': ( 'core.html#read_vcf',
+                                                                                                         'cryptosporidium_host_adaptation/core.py')}}}
