@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "cryptosporidium_host_adaptation"
+  site-url: "https://mtinti.github.io/cryptosporidium_host_adaptation"
+  description: "Analysis of Cryptosporidium parvum isolates from mice and neonatal calves"
+  repo-branch: main
+  repo-url: "https://github.com/mtinti/cryptosporidium_host_adaptation"
