@@ -129,9 +129,7 @@ on:
 - Single nucleotide polymorphisms (SNPs)
 - Small insertions and deletions (indels)
 
-# From Raw Variants to Biological Insights
-
-## 📊 From Data to Discovery with 🐼 Pandas
+# From Raw Variants to Biological Insights 📊 with Pandas 🐼
 
 Leveraging the robust capabilities of Python’s pandas library
 transformed our genetic data into a powerhouse of actionable insights.
@@ -234,6 +232,18 @@ df_allele_counts.head()
 <p>5 rows × 25 columns</p>
 </div>
 
+## 📝 Keep variants where one of the call as at least 5 supporting reads
+
+``` python
+print(df_allele_counts.shape)
+df_allele_counts = df_allele_counts[
+df_allele_counts[[n for n in df_allele_counts.columns if n.startswith('AO')]].max(axis=1)>=5]
+print(df_allele_counts.shape)
+```
+
+    (1238, 25)
+    (1238, 25)
+
 ``` python
 df_af = compute_frequencies(df_allele_counts)
 df_af.to_csv("../data/allele_frequencies.tsv", sep="\t", index=False)
@@ -261,11 +271,11 @@ df_af.head()
 
 |  | \#CHROM | POS | REF | ALT | AF_M7 | AF_M5 | AF_M4 | AF_M6 | AF_C3 | AF_C2 | AF_C1 |
 |----|----|----|----|----|----|----|----|----|----|----|----|
-| 0 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAGATTT | 0.024390 | 0.043478 | 0.057971 | 0.024390 | 0.017544 | 0.000000 | 0.016129 |
 | 1 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAGATAT | 0.817073 | 0.760870 | 0.855072 | 0.756098 | 0.789474 | 0.869565 | 0.806452 |
-| 2 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAAGATAT | 0.024390 | 0.021739 | 0.014493 | 0.012195 | 0.017544 | 0.057971 | 0.064516 |
 | 3 | CM000429 | 60889 | ACCCCACT | ACCCCCACT | 0.900000 | 0.943396 | 0.942857 | 0.853659 | 0.888889 | 0.970588 | 0.898551 |
 | 4 | CM000429 | 76625 | A | G | 0.269231 | 0.350000 | 0.404762 | 0.314607 | 0.566265 | 0.303571 | 0.437500 |
+| 5 | CM000429 | 82019 | A | T | 0.908163 | 0.705882 | 0.779070 | 0.833333 | 0.628571 | 0.617284 | 0.690141 |
+| 6 | CM000429 | 82192 | G | A | 0.894231 | 0.701493 | 0.666667 | 0.745098 | 0.471698 | 0.619565 | 0.602410 |
 
 </div>
 
@@ -279,7 +289,7 @@ fig,ax=plt.subplots(figsize=(8,4))
 data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
 tmp = pd.Series(data.iloc[:,4:].values.flatten())
 tmp.name='All Samples'
-tmp.plot(kind='hist',histtype='step',bins=50,ax=ax)
+tmp.plot(kind='hist',histtype='step',bins=50,ax=ax,linewidth=1)
 ax.set_xlabel('Alternate Allele Frequency')
 ax.set_ylabel('Counts')
 mod_hist_legend(ax)
@@ -287,7 +297,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-10-output-1.png)
+![](index_files/figure-commonmark/cell-11-output-1.png)
 
 - **Expected in clonal samples**: Frequencies clustered at extremes (0
   or 1)
@@ -335,11 +345,11 @@ plt.savefig('../data/Allele_Frequency_SNVs.svg')
 plt.savefig('../data/Allele_Frequency_SNVs.png')
 ```
 
-    step 1 starting variants: (1937, 11)
+    step 1 starting variants: (1238, 11)
     step 2 only snv variants: (511, 11)
     selected variants: (129, 7)
 
-![](index_files/figure-commonmark/cell-11-output-2.png)
+![](index_files/figure-commonmark/cell-12-output-2.png)
 
 ## 🧬 Distinct Evolutionary Trajectories Revealed
 
@@ -357,6 +367,22 @@ The hierarchical clustering dendrogram revealed several patterns:
     three bovine samples (C1-C3) showed greater similarity to the early
     murine passages (M4-M5) than to the later murine passages (M6-M7).
     Bovine adaptation might be slower to kick in.”*
+
+## 🔍 Frequency Distribution Analysis SNVs
+
+``` python
+fig,ax=plt.subplots(figsize=(8,4))
+tmp = pd.Series(data.iloc[:,4:].values.flatten())
+tmp.name='SNVs'
+tmp.plot(kind='hist',histtype='step',bins=50,ax=ax,linewidth=1)
+ax.set_xlabel('Alternate Allele Frequency')
+ax.set_ylabel('Counts')
+mod_hist_legend(ax)
+clean_axes(ax)
+plt.show()
+```
+
+![](index_files/figure-commonmark/cell-13-output-1.png)
 
 # 🔬 Focusing on INDELS
 
@@ -381,20 +407,44 @@ plt.savefig('../data/Allele_Frequency_INDELs.svg')
 plt.savefig('../data/Allele_Frequency_INDELs.png')
 ```
 
-    step 1 starting variants: (1937, 11)
-    step 2 only snv variants: (1426, 11)
-    selected variants: (1143, 7)
+    step 1 starting variants: (1238, 11)
+    step 2 only snv variants: (727, 11)
+    selected variants: (444, 7)
 
-![](index_files/figure-commonmark/cell-12-output-2.png)
+![](index_files/figure-commonmark/cell-14-output-2.png)
 
-## 🔍 Distinct Clustering Patterns in INDELs
+## 🧬 Distinct Clustering Patterns in INDELs
 
-> When applying our clustering strategy to INDELs, we observed
-> strikingly different patterns from those seen with SNVs
+When applying our clustering strategy to INDELs, we observed strikingly
+different patterns from those seen with SNVs
 
 > *“The most striking feature of our INDEL analysis is the emergence of
 > sample specific variant clusters”* or in ther words, sample specific
 > groups of INDELs
+
+## 🔍 Frequency Distribution Analysis SNVs
+
+``` python
+fig,ax=plt.subplots(figsize=(8,4))
+tmp = pd.Series(data.iloc[:,4:].values.flatten())
+tmp.name='INDELs'
+tmp.plot(kind='hist',histtype='step',bins=50,ax=ax,linewidth=1)
+ax.set_xlabel('Alternate Allele Frequency')
+ax.set_ylabel('Counts')
+mod_hist_legend(ax)
+clean_axes(ax)
+plt.show()
+```
+
+![](index_files/figure-commonmark/cell-15-output-1.png)
+
+## 📊 Accelerated INDEL Evolution
+
+> *“The predominance of low-frequency INDELs compared to the SNVs
+> frequencies suggests fundamentally different evolutionary dynamics:
+> while SNVs appear to undergo gradual selection toward fixation, INDELs
+> display a pattern of rapid emergence and turnover, generating a
+> diverse array of transient subpopulations within each sample.”*
 
 # Genome-Wide Distribution: Mapping Variants Across the Cryptosporidium Genome
 
@@ -410,7 +460,7 @@ data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
 make_circos_plot(data)
 ```
 
-![](index_files/figure-commonmark/cell-13-output-1.png)
+![](index_files/figure-commonmark/cell-16-output-1.png)
 
 ## 🧬 Genomic Distribution Patterns
 
