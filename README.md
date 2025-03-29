@@ -384,6 +384,16 @@ plt.show()
 
 ![](index_files/figure-commonmark/cell-13-output-1.png)
 
+## From SNVs to INDELs: Exploring Different Variant Dynamics
+
+> While our overall frequency analysis revealed peaks near 0 and 1
+> across all variants, SNVs are predominantly clustered at higher
+> frequencies (\>0.4). This observation raises an important question:
+> what’s happening with INDELs to create this contrast? To understand
+> this difference, we next focused specifically on INDEL frequency
+> distributions, which might reveal distinct evolutionary dynamics for
+> these structural variants compared to point mutations.
+
 # 🔬 Focusing on INDELS
 
 > Having established clear evolutionary patterns through SNV analysis,
@@ -411,7 +421,7 @@ plt.savefig('../data/Allele_Frequency_INDELs.png')
     step 2 only snv variants: (727, 11)
     selected variants: (444, 7)
 
-![](index_files/figure-commonmark/cell-14-output-2.png)
+![](index_files/figure-commonmark/cell-15-output-2.png)
 
 ## 🧬 Distinct Clustering Patterns in INDELs
 
@@ -436,7 +446,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-15-output-1.png)
+![](index_files/figure-commonmark/cell-16-output-1.png)
 
 ## 📊 Accelerated INDEL Evolution
 
@@ -460,7 +470,7 @@ data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
 make_circos_plot(data)
 ```
 
-![](index_files/figure-commonmark/cell-16-output-1.png)
+![](index_files/figure-commonmark/cell-17-output-1.png)
 
 ## 🧬 Genomic Distribution Patterns
 
