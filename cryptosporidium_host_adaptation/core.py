@@ -4,7 +4,7 @@
 
 # %% auto 0
 __all__ = ['count_variants', 'filter_variants', 'read_vcf', 'find_index', 'expand_multiallelic_variants', 'compute_frequencies',
-           'mod_hist_legend', 'clean_axes', 'make_circos_plot']
+           'extract_first_ann', 'add_ann_info_to_df', 'mod_hist_legend', 'clean_axes', 'make_circos_plot']
 
 # %% ../nbs/00_core.ipynb 4
 import subprocess
@@ -81,7 +81,7 @@ def read_vcf(vcf_file):
     return df
 
 
-# %% ../nbs/00_core.ipynb 8
+# %% ../nbs/00_core.ipynb 9
 def find_index(format_value, field):
     """Finds the index of a specific field (e.g., RO, AO, DP) in the FORMAT column."""
     item_list = format_value.split(':')
@@ -144,7 +144,7 @@ def expand_multiallelic_variants(df_vcf):
 
     return expanded_df
 
-# %% ../nbs/00_core.ipynb 11
+# %% ../nbs/00_core.ipynb 10
 def compute_frequencies(df_counts):
     """
     Computes allele frequency (AF = AO / DP) for each sample in the dataset.
@@ -165,7 +165,99 @@ def compute_frequencies(df_counts):
     return df_af
 
 
-# %% ../nbs/00_core.ipynb 12
+# %% ../nbs/00_core.ipynb 11
+def extract_first_ann(info_field):
+    """
+    Extract the first ANN annotation from a VCF INFO field.
+    
+    Parameters:
+    -----------
+    info_field : str
+        The INFO field from a VCF file
+    
+    Returns:
+    --------
+    dict
+        A dictionary containing the variant type, impact, and gene ID,
+        or None if no ANN field is found
+    """
+    # Check if there's an ANN field
+    if 'ANN=' not in info_field:
+        return None
+    
+    # Extract the ANN part
+    ann_start = info_field.find('ANN=')
+    # Take everything after "ANN="
+    ann_content = info_field[ann_start + 4:]
+    
+    # If there are other fields after ANN, cut them off
+    if ';' in ann_content:
+        ann_content = ann_content.split(';')[0]
+    
+    # Split by comma to get individual annotations
+    annotations = ann_content.split(',')
+    
+    # Get the first annotation
+    first_ann = annotations[0]
+    
+    # Split by pipe (|) to get annotation fields
+    ann_fields = first_ann.split('|')
+    
+    # Create result dictionary
+    # Standard VCF ANN format: Allele | Annotation | Impact | Gene_Name | ...
+    if len(ann_fields) >= 4:
+        result = {
+            'allele': ann_fields[0],
+            'type': ann_fields[1],
+            'impact': ann_fields[2],
+            'gene_id': ann_fields[3]
+        }
+        return result
+    else:
+        return None
+
+
+
+def add_ann_info_to_df(df, info_column='INFO'):
+    """
+    Extract the first ANN annotation from the INFO field and add as separate columns to a DataFrame.
+    
+    Parameters:
+    -----------
+    df : pandas.DataFrame
+        DataFrame containing VCF data with an INFO column
+    info_column : str, default='INFO'
+        Name of the column containing the INFO field
+        
+    Returns:
+    --------
+    pandas.DataFrame
+        The original DataFrame with additional columns for variant type, impact, and gene ID
+    """
+    # Create new columns with None values
+    df['variant_type'] = None
+    df['impact'] = None
+    df['gene_id'] = None
+    df['allele'] = None
+    
+    # Process each row
+    for idx, row in df.iterrows():
+        info = row[info_column]
+        ann_data = extract_first_ann(info)
+        
+        if ann_data:
+            df.loc[idx, 'variant_type'] = ann_data['type']
+            df.loc[idx, 'impact'] = ann_data['impact']
+            df.loc[idx, 'gene_id'] = ann_data['gene_id']
+            df.loc[idx, 'allele'] = ann_data['allele']
+    
+    return df
+
+# Example usage
+# Assuming you have a DataFrame 'vcf_df' with a column 'INFO' containing VCF INFO fields
+# vcf_df = add_ann_info_to_df(vcf_df)
+
+# %% ../nbs/00_core.ipynb 14
 def mod_hist_legend(ax, title=False):
     """
     Creates a cleaner legend for histogram plots by using line elements instead of patches.
@@ -238,7 +330,7 @@ def clean_axes(ax, offset=10):
     # Return the modified axes
     return ax
 
-# %% ../nbs/00_core.ipynb 14
+# %% ../nbs/00_core.ipynb 16
 def make_circos_plot(data):
     
     seqid2size = {
