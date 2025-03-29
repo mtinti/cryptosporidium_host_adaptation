@@ -112,14 +112,16 @@ def expand_multiallelic_variants(df_vcf):
     for _, row in df_vcf.iterrows():
         # Split ALT alleles (multi-allelic sites will have multiple ALT values)
         alt_alleles = row['ALT'].split(',')
-
+        info_type = row['INFO'].split('TYPE=')[1].split(';')[0].split(',')
+        
         # Process each ALT allele separately
-        for i, alt in enumerate(alt_alleles):
+        for i, (alt, inty )in enumerate(zip(alt_alleles,info_type)):
             new_row = {
                 "#CHROM": row["#CHROM"],
                 "POS": row["POS"],
                 "REF": row["REF"],
-                "ALT": alt  # Assign each alternate allele to a separate row
+                "ALT": alt,  # Assign each alternate allele to a separate row
+                "INFO_TYPE": inty
             }
 
             for sample in sample_names:
@@ -142,7 +144,7 @@ def expand_multiallelic_variants(df_vcf):
 
     return expanded_df
 
-# %% ../nbs/00_core.ipynb 10
+# %% ../nbs/00_core.ipynb 11
 def compute_frequencies(df_counts):
     """
     Computes allele frequency (AF = AO / DP) for each sample in the dataset.
@@ -163,7 +165,7 @@ def compute_frequencies(df_counts):
     return df_af
 
 
-# %% ../nbs/00_core.ipynb 11
+# %% ../nbs/00_core.ipynb 12
 def mod_hist_legend(ax, title=False):
     """
     Creates a cleaner legend for histogram plots by using line elements instead of patches.
@@ -236,7 +238,7 @@ def clean_axes(ax, offset=10):
     # Return the modified axes
     return ax
 
-# %% ../nbs/00_core.ipynb 13
+# %% ../nbs/00_core.ipynb 14
 def make_circos_plot(data):
     
     seqid2size = {

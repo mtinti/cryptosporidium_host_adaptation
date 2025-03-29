@@ -221,28 +221,31 @@ df_allele_counts.head()
     }
 </style>
 
-|  | \#CHROM | POS | REF | ALT | RO_M7 | DP_M7 | AO_M7 | RO_M5 | DP_M5 | AO_M5 | ... | AO_M6 | RO_C3 | DP_C3 | AO_C3 | RO_C2 | DP_C2 | AO_C2 | RO_C1 | DP_C1 | AO_C1 |
+|  | \#CHROM | POS | REF | ALT | INFO_TYPE | RO_M7 | DP_M7 | AO_M7 | RO_M5 | DP_M5 | ... | AO_M6 | RO_C3 | DP_C3 | AO_C3 | RO_C2 | DP_C2 | AO_C2 | RO_C1 | DP_C1 | AO_C1 |
 |----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
-| 0 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAGATTT | 9 | 82 | 2 | 3 | 46 | 2 | ... | 2 | 5 | 57 | 1 | 1 | 69 | 0 | 4 | 62 | 1 |
-| 1 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAGATAT | 9 | 82 | 67 | 3 | 46 | 35 | ... | 62 | 5 | 57 | 45 | 1 | 69 | 60 | 4 | 62 | 50 |
-| 2 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAAGATAT | 9 | 82 | 2 | 3 | 46 | 1 | ... | 1 | 5 | 57 | 1 | 1 | 69 | 4 | 4 | 62 | 4 |
-| 3 | CM000429 | 60889 | ACCCCACT | ACCCCCACT | 9 | 90 | 81 | 1 | 53 | 50 | ... | 70 | 5 | 45 | 40 | 1 | 68 | 66 | 4 | 69 | 62 |
-| 4 | CM000429 | 76625 | A | G | 76 | 104 | 28 | 52 | 80 | 28 | ... | 28 | 36 | 83 | 47 | 78 | 112 | 34 | 63 | 112 | 49 |
+| 0 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAGATTT | complex | 9 | 82 | 2 | 3 | 46 | ... | 2 | 5 | 57 | 1 | 1 | 69 | 0 | 4 | 62 | 1 |
+| 1 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAGATAT | ins | 9 | 82 | 67 | 3 | 46 | ... | 62 | 5 | 57 | 45 | 1 | 69 | 60 | 4 | 62 | 50 |
+| 2 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAAGATAT | ins | 9 | 82 | 2 | 3 | 46 | ... | 1 | 5 | 57 | 1 | 1 | 69 | 4 | 4 | 62 | 4 |
+| 3 | CM000429 | 60889 | ACCCCACT | ACCCCCACT | ins | 9 | 90 | 81 | 1 | 53 | ... | 70 | 5 | 45 | 40 | 1 | 68 | 66 | 4 | 69 | 62 |
+| 4 | CM000429 | 76625 | A | G | snp | 76 | 104 | 28 | 52 | 80 | ... | 28 | 36 | 83 | 47 | 78 | 112 | 34 | 63 | 112 | 49 |
 
-<p>5 rows × 25 columns</p>
+<p>5 rows × 26 columns</p>
 </div>
 
 ## 📝 Keep variants where one of the call as at least 5 supporting reads
+
+> shell we also remove complex? yes for now
 
 ``` python
 print(df_allele_counts.shape)
 df_allele_counts = df_allele_counts[
 df_allele_counts[[n for n in df_allele_counts.columns if n.startswith('AO')]].max(axis=1)>=5]
+df_allele_counts = df_allele_counts[df_allele_counts['INFO_TYPE']!='complex']
 print(df_allele_counts.shape)
 ```
 
-    (1238, 25)
-    (1238, 25)
+    (1937, 26)
+    (1121, 26)
 
 ``` python
 df_af = compute_frequencies(df_allele_counts)
@@ -345,7 +348,7 @@ plt.savefig('../data/Allele_Frequency_SNVs.svg')
 plt.savefig('../data/Allele_Frequency_SNVs.png')
 ```
 
-    step 1 starting variants: (1238, 11)
+    step 1 starting variants: (1121, 11)
     step 2 only snv variants: (511, 11)
     selected variants: (129, 7)
 
@@ -417,9 +420,9 @@ plt.savefig('../data/Allele_Frequency_INDELs.svg')
 plt.savefig('../data/Allele_Frequency_INDELs.png')
 ```
 
-    step 1 starting variants: (1238, 11)
-    step 2 only snv variants: (727, 11)
-    selected variants: (444, 7)
+    step 1 starting variants: (1121, 11)
+    step 2 only snv variants: (610, 11)
+    selected variants: (349, 7)
 
 ![](index_files/figure-commonmark/cell-15-output-2.png)
 
