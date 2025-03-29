@@ -1,0 +1,162 @@
+[
+  {
+    "objectID": "index.html#the-origin-strain-m4",
+    "href": "index.html#the-origin-strain-m4",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "The Origin: Strain M4",
+    "text": "The Origin: Strain M4\nOur journey begins with a single infected mouse (M4), harboring a Cryptosporidium strain that would become the progenitor of two distinct evolutionary paths. This initial host served as the critical branching point for our experimental design.\nFrom this single origin, the parasite’s story split into two parallel narratives:\n\n🐭 The Murine Passage 🐭\n\nIn this pathway, Cryptosporidium continued its journey through a series of mouse hosts, adapting to the murine environment through sequential passages:\n\nM4 → M5 → M6 → M7\nEach passage potentially allowed the parasite to optimize its survival and reproductive strategies within these genetically similar mammalian hosts.\n\n\n🐄 The Bovine Passage 🐄\n\nSimultaneously, we challenged the adaptability of the same initial strain by introducing it to an entirely different mammalian lineage - neonatal calves:\n\nM4 → C1 → C2 → C3\nThis cross-species transmission forced the parasite to navigate a dramatically different physiological environment, potentially driving rapid adaptation.",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "index.html#specialized-variant-calling-strategy",
+    "href": "index.html#specialized-variant-calling-strategy",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "🧬 Specialized Variant Calling Strategy 🧬",
+    "text": "🧬 Specialized Variant Calling Strategy 🧬\nThe progenitor Cryptosporidium population in mouse M4 wasn’t a homogeneous colony, but rather a diverse mixture of strains.\n\nThis discovery fundamentally shaped our analytical approach.\n\nTo capture the true genetic complexity within our samples, we implemented a customized variant calling pipeline:\n┌────────────────────────────────┐\n│ FREEBAYES VARIANT CALLING      │\n├────────────────────────────────┤\n│ • Ploidy = 1                   │\n│ • --pooled-continuous option   │\n└────────────────────────────────┘\nWhy This Approach Matters?\n\nBeyond Binary Detection: &gt; Traditional presence/absence variant calling would have flattened the rich complexity of our samples, obscuring the very phenomenon we aimed to study.\nQuantitative Insight: &gt; By focusing on allele frequencies rather than simple variant calls, will allow us to track subtle shifts in population genetics across hosts.",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "index.html#from-vcf-fields-to-counting-reads-for-each-allele",
+    "href": "index.html#from-vcf-fields-to-counting-reads-for-each-allele",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "📝 From VCF Fields to counting reads for each allele",
+    "text": "📝 From VCF Fields to counting reads for each allele\n┌─────────────────────────────────────────────────────────┐\n│ ALLELE FREQUENCY CALCULATION COMPONENTS                 │\n├─────────────────────────────────────────────────────────┤\n│ RO: Reference Allele Observation count                  │\n│ AO: Alternate Allele Observation count                  │\n│ DP: Total Read Depth at position                        │\n│                                                         │\n│ Allele Frequency = AO / DP                              │\n└─────────────────────────────────────────────────────────┘\n\ndf_allele_counts = expand_multiallelic_variants(df_vcf)\ndf_allele_counts.to_csv(\"../data/allele_counts_expanded.tsv\", sep=\"\\t\", index=False)\nprint(\"✅ Extracted and expanded allele counts saved to allele_counts_expanded.tsv\")\n\n✅ Extracted and expanded allele counts saved to allele_counts_expanded.tsv\n\n\n\ndf_allele_counts.head()\n\n\n\n\n\n\n\n\n#CHROM\nPOS\nREF\nALT\nINFO_TYPE\nRO_M7\nDP_M7\nAO_M7\nRO_M5\nDP_M5\n...\nAO_M6\nRO_C3\nDP_C3\nAO_C3\nRO_C2\nDP_C2\nAO_C2\nRO_C1\nDP_C1\nAO_C1\n\n\n\n\n0\nCM000429\n60867\nTAAAAAAAAAAGATAT\nTAAAAAAAAAAAGATTT\ncomplex\n9\n82\n2\n3\n46\n...\n2\n5\n57\n1\n1\n69\n0\n4\n62\n1\n\n\n1\nCM000429\n60867\nTAAAAAAAAAAGATAT\nTAAAAAAAAAAAGATAT\nins\n9\n82\n67\n3\n46\n...\n62\n5\n57\n45\n1\n69\n60\n4\n62\n50\n\n\n2\nCM000429\n60867\nTAAAAAAAAAAGATAT\nTAAAAAAAAAAAAGATAT\nins\n9\n82\n2\n3\n46\n...\n1\n5\n57\n1\n1\n69\n4\n4\n62\n4\n\n\n3\nCM000429\n60889\nACCCCACT\nACCCCCACT\nins\n9\n90\n81\n1\n53\n...\n70\n5\n45\n40\n1\n68\n66\n4\n69\n62\n\n\n4\nCM000429\n76625\nA\nG\nsnp\n76\n104\n28\n52\n80\n...\n28\n36\n83\n47\n78\n112\n34\n63\n112\n49\n\n\n\n\n5 rows × 26 columns",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "index.html#keep-variants-where-one-of-the-call-as-at-least-5-supporting-reads",
+    "href": "index.html#keep-variants-where-one-of-the-call-as-at-least-5-supporting-reads",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "📝 Keep variants where one of the call as at least 5 supporting reads",
+    "text": "📝 Keep variants where one of the call as at least 5 supporting reads\n\nshell we also remove complex? yes for now\n\n\nprint(df_allele_counts.shape)\ndf_allele_counts = df_allele_counts[\ndf_allele_counts[[n for n in df_allele_counts.columns if n.startswith('AO')]].max(axis=1)&gt;=5]\ndf_allele_counts = df_allele_counts[df_allele_counts['INFO_TYPE']!='complex']\nprint(df_allele_counts.shape)\n\n(1937, 26)\n(1121, 26)\n\n\n\ndf_af = compute_frequencies(df_allele_counts)\ndf_af.to_csv(\"../data/allele_frequencies.tsv\", sep=\"\\t\", index=False)\nprint(\"✅ Allele frequencies saved to allele_frequencies.tsv\")\n\n✅ Allele frequencies saved to allele_frequencies.tsv\n\n\n\ndf_af.head()\n\n\n\n\n\n\n\n\n#CHROM\nPOS\nREF\nALT\nAF_M7\nAF_M5\nAF_M4\nAF_M6\nAF_C3\nAF_C2\nAF_C1\n\n\n\n\n1\nCM000429\n60867\nTAAAAAAAAAAGATAT\nTAAAAAAAAAAAGATAT\n0.817073\n0.760870\n0.855072\n0.756098\n0.789474\n0.869565\n0.806452\n\n\n3\nCM000429\n60889\nACCCCACT\nACCCCCACT\n0.900000\n0.943396\n0.942857\n0.853659\n0.888889\n0.970588\n0.898551\n\n\n4\nCM000429\n76625\nA\nG\n0.269231\n0.350000\n0.404762\n0.314607\n0.566265\n0.303571\n0.437500\n\n\n5\nCM000429\n82019\nA\nT\n0.908163\n0.705882\n0.779070\n0.833333\n0.628571\n0.617284\n0.690141\n\n\n6\nCM000429\n82192\nG\nA\n0.894231\n0.701493\n0.666667\n0.745098\n0.471698\n0.619565\n0.602410",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "index.html#frequency-distribution-analysis",
+    "href": "index.html#frequency-distribution-analysis",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "🔍 Frequency Distribution Analysis",
+    "text": "🔍 Frequency Distribution Analysis\n\nWith our extracted allele frequencies in hand, we could now explore how these frequencies were distributed across our samples\n\n\nfig,ax=plt.subplots(figsize=(8,4))\ndata=pd.read_csv('../data/allele_frequencies.tsv',sep='\\t')\ntmp = pd.Series(data.iloc[:,4:].values.flatten())\ntmp.name='All Samples'\ntmp.plot(kind='hist',histtype='step',bins=50,ax=ax,linewidth=1)\nax.set_xlabel('Alternate Allele Frequency')\nax.set_ylabel('Counts')\nmod_hist_legend(ax)\nclean_axes(ax)\nplt.show()\n\n\n\n\n\n\n\n\n\nExpected in clonal samples: Frequencies clustered at extremes (0 or 1)\n\n0: Reference allele only\n1: Alternative allele only\n\n\n\n“The presence of allele frequencies distinctly deviating from the expected 0/1 pattern confirms our hypothesis that mouse M4 harbors a heterogeneous Cryptosporidium population with multiple strains coexisting”",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "index.html#distinct-evolutionary-trajectories-revealed",
+    "href": "index.html#distinct-evolutionary-trajectories-revealed",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "🧬 Distinct Evolutionary Trajectories Revealed",
+    "text": "🧬 Distinct Evolutionary Trajectories Revealed\nThe hierarchical clustering dendrogram revealed several patterns:\n\nClear Host-Species Separation: &gt; “The clustering segregated bovine and murine samples, suggesting host specific pressure on the Cryptosporidium population.”\nTemporal Evolution in Murine Hosts: &gt; “The murine samples displayed a clear temporal progression, with M6 and M7 clustering distinctly from the earlier passages (M4-M5).”\nSimilarity Between Early Murine and Bovine Samples: &gt; “The three bovine samples (C1-C3) showed greater similarity to the early murine passages (M4-M5) than to the later murine passages (M6-M7). Bovine adaptation might be slower to kick in.”",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "index.html#frequency-distribution-analysis-snvs",
+    "href": "index.html#frequency-distribution-analysis-snvs",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "🔍 Frequency Distribution Analysis SNVs",
+    "text": "🔍 Frequency Distribution Analysis SNVs\n\nfig,ax=plt.subplots(figsize=(8,4))\ntmp = pd.Series(data.iloc[:,4:].values.flatten())\ntmp.name='SNVs'\ntmp.plot(kind='hist',histtype='step',bins=50,ax=ax,linewidth=1)\nax.set_xlabel('Alternate Allele Frequency')\nax.set_ylabel('Counts')\nmod_hist_legend(ax)\nclean_axes(ax)\nplt.show()",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "index.html#from-snvs-to-indels-exploring-different-variant-dynamics",
+    "href": "index.html#from-snvs-to-indels-exploring-different-variant-dynamics",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "From SNVs to INDELs: Exploring Different Variant Dynamics",
+    "text": "From SNVs to INDELs: Exploring Different Variant Dynamics\n\nWhile our overall frequency analysis revealed peaks near 0 and 1 across all variants, SNVs are predominantly clustered at higher frequencies (&gt;0.4). This observation raises an important question: what’s happening with INDELs to create this contrast? To understand this difference, we next focused specifically on INDEL frequency distributions, which might reveal distinct evolutionary dynamics for these structural variants compared to point mutations.",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "index.html#distinct-clustering-patterns-in-indels",
+    "href": "index.html#distinct-clustering-patterns-in-indels",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "🧬 Distinct Clustering Patterns in INDELs",
+    "text": "🧬 Distinct Clustering Patterns in INDELs\nWhen applying our clustering strategy to INDELs, we observed strikingly different patterns from those seen with SNVs\n\n“The most striking feature of our INDEL analysis is the emergence of sample specific variant clusters” or in ther words, sample specific groups of INDELs",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "index.html#frequency-distribution-analysis-snvs-1",
+    "href": "index.html#frequency-distribution-analysis-snvs-1",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "🔍 Frequency Distribution Analysis SNVs",
+    "text": "🔍 Frequency Distribution Analysis SNVs\n\nfig,ax=plt.subplots(figsize=(8,4))\ntmp = pd.Series(data.iloc[:,4:].values.flatten())\ntmp.name='INDELs'\ntmp.plot(kind='hist',histtype='step',bins=50,ax=ax,linewidth=1)\nax.set_xlabel('Alternate Allele Frequency')\nax.set_ylabel('Counts')\nmod_hist_legend(ax)\nclean_axes(ax)\nplt.show()",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "index.html#accelerated-indel-evolution",
+    "href": "index.html#accelerated-indel-evolution",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "📊 Accelerated INDEL Evolution",
+    "text": "📊 Accelerated INDEL Evolution\n\n“The predominance of low-frequency INDELs compared to the SNVs frequencies suggests fundamentally different evolutionary dynamics: while SNVs appear to undergo gradual selection toward fixation, INDELs display a pattern of rapid emergence and turnover, generating a diverse array of transient subpopulations within each sample.”",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "index.html#taking-a-broader-perspective",
+    "href": "index.html#taking-a-broader-perspective",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "🔍 Taking a Broader Perspective",
+    "text": "🔍 Taking a Broader Perspective\n\nHaving explored the dynamics of both SNVs and INDELs through clustering analyses, we stepped back to examine the holistic picture of where these variants are distributed across the Cryptosporidium genome.\n\n\ndata=pd.read_csv('../data/allele_frequencies.tsv',sep='\\t')\nmake_circos_plot(data)",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "index.html#genomic-distribution-patterns",
+    "href": "index.html#genomic-distribution-patterns",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "🧬 Genomic Distribution Patterns",
+    "text": "🧬 Genomic Distribution Patterns\nThe circular genome plot revealed several striking patterns:\n\n“The distribution of variants across the Cryptosporidium genome is strikingly non-random, with clear hotspots of both SNVs and INDELs congregating in specific genomic regions other then close to the telomers.”",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "index.html#decoding-functional-consequences",
+    "href": "index.html#decoding-functional-consequences",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "🧬 Decoding Functional Consequences",
+    "text": "🧬 Decoding Functional Consequences\n\nWith our variants annotated using SnpEff, we can now delve deeper into their functional implications—moving beyond mere genomic positions to understand how these mutations potentially reshape Cryptosporidium biology.\n\nLet’s select again our SNV dataset used for clustering and add the INFO field from the vcf file\n\ndata.head()\n\n\n\n\n\n\n\n\n\nAF_M7\nAF_M5\nAF_M6\nAF_M4\nAF_C3\nAF_C2\nAF_C1\nINFO\n\n\n#CHROM\nPOS\n\n\n\n\n\n\n\n\n\n\n\n\nCM000429\n76625\n0.475450\n0.618085\n0.555582\n0.714792\n1.000000\n0.536094\n0.772606\nAB=0;ABP=0;AC=1;AF=0.142857;AN=7;AO=248;CIGAR=...\n\n\n82019\n1.000000\n0.777264\n0.917603\n0.857852\n0.692135\n0.679706\n0.759930\nAB=0;ABP=0;AC=7;AF=1;AN=7;AO=410;CIGAR=1X;DP=5...\n\n\n82192\n1.000000\n0.784465\n0.833228\n0.745520\n0.527490\n0.692847\n0.673662\nAB=0;ABP=0;AC=6;AF=0.857143;AN=7;AO=398;CIGAR=...\n\n\n702600\n0.725550\n0.837162\n0.681081\n0.922297\n0.901888\n0.861137\n1.000000\nAB=0;ABP=0;AC=7;AF=1;AN=7;AO=451;CIGAR=1X;DP=6...\n\n\n702605\n0.722545\n0.892645\n0.694440\n0.953358\n1.000000\n0.861506\n0.979373\nAB=0;ABP=0;AC=7;AF=1;AN=7;AO=488;CIGAR=1X;DP=6...\n\n\n\n\n\n\n\n\nWe use a parsing strategy to extract key annotation components from SnpEff\n\n\ndata = add_ann_info_to_df(data)\ndel data['INFO']\ndata.head()\n\n\n\n\n\n\n\n\n\nAF_M7\nAF_M5\nAF_M6\nAF_M4\nAF_C3\nAF_C2\nAF_C1\nvariant_type\nimpact\ngene_id\nallele\n\n\n#CHROM\nPOS\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCM000429\n76625\n0.475450\n0.618085\n0.555582\n0.714792\n1.000000\n0.536094\n0.772606\nsynonymous_variant\nLOW\ncgd1_340\nG\n\n\n82019\n1.000000\n0.777264\n0.917603\n0.857852\n0.692135\n0.679706\n0.759930\nsynonymous_variant\nLOW\ncgd1_360\nT\n\n\n82192\n1.000000\n0.784465\n0.833228\n0.745520\n0.527490\n0.692847\n0.673662\nmissense_variant\nMODERATE\ncgd1_360\nA\n\n\n702600\n0.725550\n0.837162\n0.681081\n0.922297\n0.901888\n0.861137\n1.000000\nmissense_variant\nMODERATE\ncgd1_3190\nA\n\n\n702605\n0.722545\n0.892645\n0.694440\n0.953358\n1.000000\n0.861506\n0.979373\nsynonymous_variant\nLOW\ncgd1_3190\nA",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "index.html#variant-type-distribution-and-high-impact-mutations",
+    "href": "index.html#variant-type-distribution-and-high-impact-mutations",
+    "title": "Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation",
+    "section": "Variant Type Distribution and High-Impact Mutations",
+    "text": "Variant Type Distribution and High-Impact Mutations\n\nAfter extracting SnpEff annotations, we analyzed the distribution of variant types across impact categories\n\n\ndata['impact'].value_counts()\n\nimpact\nMODERATE    52\nMODIFIER    41\nLOW         34\nHIGH         2\nName: count, dtype: int64\n\n\n\nIntriguingly, we identified only two HIGH impact variants in our dataset, lets have a look 🔍\n\n\ndata[data['impact']=='HIGH']\n\n\n\n\n\n\n\n\n\nAF_M7\nAF_M5\nAF_M6\nAF_M4\nAF_C3\nAF_C2\nAF_C1\nvariant_type\nimpact\ngene_id\nallele\n\n\n#CHROM\nPOS\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCM000435\n620700\n0.993550\n0.736207\n1.000000\n0.679239\n0.629232\n0.596495\n0.614746\nstop_gained\nHIGH\ncgd7_2620\nA\n\n\nCM000436\n170586\n0.496313\n1.000000\n0.595576\n0.962636\n0.739837\n0.945591\n0.967480\nstop_lost&splice_region_variant\nHIGH\ncgd8_670\nC\n\n\n\n\n\n\n\n\nwe created trajectory visualizations that track their frequencies across sequential passages in both lineages.\n\n\nPlot trajectory in mouse and cow\n\nfig,axes = plt.subplots(figsize = (10,4), ncols=2,sharey=True)\ndata[data['impact']=='HIGH'][['AF_M4','AF_M5','AF_M6','AF_M7']].T.plot(ax=axes[0])\nclean_axes(axes[0]).set_title('MOUSE')\ndata[data['impact']=='HIGH'][['AF_M4','AF_C1','AF_C2','AF_C3']].T.plot(ax=axes[1])\nclean_axes(axes[1]).set_title('COW')\nplt.ylim(0,1.1)\nplt.show()\n\n\n\n\n\n\n\n\n\n\nKey Variant Trajectories\nOne variant located at CM000436:170586 (in gene cgd8_670) displays a pattern of negative selection in both host lineages:\n\nIn mouse passages: Frequency steadily decreases from M4 to M7\nIn cow passages: Similar downward trend more evident at C3\n\nThe variant at CM000435:620700 (in gene cgd7_2620) shows a host-dependent pattern:\n\nIn mouse passages: Frequency increases\nIn cow passages: Frequency remains relatively stable\n\n\n\nReproducibility\nInstall latest from the GitHub repository:\n$ pip install git+https://github.com/mtinti/cryptosporidium_host_adaptation.git",
+    "crumbs": [
+      "Divergent Pathways: Tracking Cryptosporidium's Host Adaptation"
+    ]
+  },
+  {
+    "objectID": "core.html",
+    "href": "core.html",
+    "title": "core",
+    "section": "",
+    "text": "source\n\nfilter_variants\n\n filter_variants ()\n\n\nsource\n\n\ncount_variants\n\n count_variants (vcf_file)\n\nCount the number of variants in a VCF file using subprocess.\n\nsource\n\n\nread_vcf\n\n read_vcf (vcf_file)\n\nReads a VCF file, automatically detecting the header and using correct column names.\n\nsource\n\n\nexpand_multiallelic_variants\n\n expand_multiallelic_variants (df_vcf)\n\nExtracts allele counts (RO, AO, DP) for each sample from the VCF DataFrame and expands multi-allelic variants into separate rows.\n\nsource\n\n\nfind_index\n\n find_index (format_value, field)\n\nFinds the index of a specific field (e.g., RO, AO, DP) in the FORMAT column.\n\nsource\n\n\ncompute_frequencies\n\n compute_frequencies (df_counts)\n\nComputes allele frequency (AF = AO / DP) for each sample in the dataset.\n/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/fastcore/docscrape.py:230: UserWarning: Unknown section Parameters:\n  else: warn(msg)\n/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/fastcore/docscrape.py:230: UserWarning: Unknown section Returns:\n  else: warn(msg)\n\nsource\n\n\nadd_ann_info_to_df\n\n add_ann_info_to_df (df, info_column='INFO')\n\nExtract the first ANN annotation from the INFO field and add as separate columns to a DataFrame.\n\nsource\n\n\nextract_first_ann\n\n extract_first_ann (info_field)\n\nExtract the first ANN annotation from a VCF INFO field.\n\n# Test with the example\ninfo_field = 'AB=0;ABP=0;AC=1;AF=0.142857;AN=7;AO=248;CIGAR=1X;DP=664;DPB=664;DPRA=0;EPP=13.1322;EPPR=3.03118;GTI=0;LEN=1;MEANALT=1;MQM=60;MQMR=60;NS=7;NUMALT=1;ODDS=61.2192;PAIRED=0.991935;PAIREDR=0.995192;PAO=0;PQA=0;PQR=0;PRO=0;QA=8364;QR=13932;RO=416;RPL=137;RPP=8.92931;RPPR=9.04449;RPR=111;RUN=1;SAF=122;SAP=3.15039;SAR=126;SRF=210;SRP=3.09382;SRR=206;TYPE=snp;technology.illumina=1;ANN=G|synonymous_variant|LOW|cgd1_340|cgd1_340|transcript|cgd1_340-RA|protein_coding|1/1|c.357A&gt;G|p.Ser119Ser|570/1483|357/1194|119/397||,G|upstream_gene_variant|MODIFIER|cgd1_320|cgd1_320|transcript|cgd1_320-RA|protein_coding||c.-4699T&gt;C|||||4675|,G|upstream_gene_variant|MODIFIER|cgd1_330|cgd1_330|transcript|cgd1_330-RA|protein_coding||c.-1174T&gt;C|||||1095|,G|upstream_gene_variant|MODIFIER|cgd1_350|cgd1_350|transcript|cgd1_350-RA|protein_coding||c.-1490A&gt;G|||||1323|,G|downstream_gene_variant|MODIFIER|cgd1_360|cgd1_360|transcript|cgd1_360-RA|protein_coding||c.*4665T&gt;C|||||4665|'\nresult = extract_first_ann(info_field)\nprint(result)\n# Should output: {'allele': 'G', 'type': 'synonymous_variant', 'impact': 'LOW', 'gene_id': 'cgd1_340'}\n\n{'allele': 'G', 'type': 'synonymous_variant', 'impact': 'LOW', 'gene_id': 'cgd1_340'}\n\n\n\n\n\n\n\n\n\n\n\n\n\nREF\nALT\nAF_M7\nAF_M5\nAF_M4\nAF_M6\nAF_C3\nAF_C2\nAF_C1\nINFO\nvariant_type\nimpact\ngene_id\nallele\n\n\n#CHROM\nPOS\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCM000429\n76625\nA\nG\n0.269231\n0.350000\n0.404762\n0.314607\n0.566265\n0.303571\n0.437500\nAB=0;ABP=0;AC=1;AF=0.142857;AN=7;AO=248;CIGAR=...\nsynonymous_variant\nLOW\ncgd1_340\nG\n\n\n82019\nA\nT\n0.908163\n0.705882\n0.779070\n0.833333\n0.628571\n0.617284\n0.690141\nAB=0;ABP=0;AC=7;AF=1;AN=7;AO=410;CIGAR=1X;DP=5...\nsynonymous_variant\nLOW\ncgd1_360\nT\n\n\n82192\nG\nA\n0.894231\n0.701493\n0.666667\n0.745098\n0.471698\n0.619565\n0.602410\nAB=0;ABP=0;AC=6;AF=0.857143;AN=7;AO=398;CIGAR=...\nmissense_variant\nMODERATE\ncgd1_360\nA\n\n\n106518\nC\nG\n1.000000\n1.000000\n1.000000\n1.000000\n1.000000\n1.000000\n1.000000\nAB=0;ABP=0;AC=7;AF=1;AN=7;AO=530;CIGAR=1X;DP=5...\nmissense_variant\nMODERATE\ncgd1_493\nG\n\n\n116718\nC\nA\n1.000000\n1.000000\n1.000000\n0.989796\n1.000000\n1.000000\n1.000000\nAB=0;ABP=0;AC=7;AF=1;AN=7;AO=525;CIGAR=1X;DP=5...\nupstream_gene_variant\nMODIFIER\ncgd1_520\nA\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\nCM000436\n1198389\nT\nA\n1.000000\n0.981818\n1.000000\n1.000000\n0.987654\n1.000000\n1.000000\nAB=0;ABP=0;AC=7;AF=1;AN=7;AO=531;CIGAR=1X;DP=5...\nmissense_variant\nMODERATE\ncgd8_4800\nA\n\n\n1198626\nA\nC\n1.000000\n1.000000\n1.000000\n1.000000\n1.000000\n1.000000\n0.987013\nAB=0;ABP=0;AC=7;AF=1;AN=7;AO=626;CIGAR=1X;DP=6...\n3_prime_UTR_variant\nMODIFIER\ncgd8_4800\nC\n\n\n1198636\nG\nA\n1.000000\n1.000000\n0.988889\n1.000000\n1.000000\n1.000000\n1.000000\nAB=0;ABP=0;AC=7;AF=1;AN=7;AO=650;CIGAR=1X;DP=6...\n3_prime_UTR_variant\nMODIFIER\ncgd8_4800\nA\n\n\n1198801\nC\nG\n1.000000\n1.000000\n1.000000\n1.000000\n1.000000\n1.000000\n1.000000\nAB=0;ABP=0;AC=7;AF=1;AN=7;AO=447;CIGAR=1X;DP=4...\n3_prime_UTR_variant\nMODIFIER\ncgd8_4800\nG\n\n\n1210605\nC\nT\n0.827586\n0.718310\n0.711111\n0.781818\n0.673684\n0.735294\n0.747573\nAB=0;ABP=0;AC=7;AF=1;AN=7;AO=464;CIGAR=1X;DP=6...\nsynonymous_variant\nLOW\ncgd8_4840\nT\n\n\n\n\n515 rows × 14 columns\n\n\n\n\nsource\n\n\nclean_axes\n\n clean_axes (ax, offset=10)\n\nCustomizes a matplotlib axes by removing top and right spines, and creating a broken axis effect where x and y axes don’t touch.\n\nsource\n\n\nmod_hist_legend\n\n mod_hist_legend (ax, title=False)\n\n*Creates a cleaner legend for histogram plots by using line elements instead of patches.\nMotivation: - Default histogram legends show rectangle patches which can be visually distracting - This function creates a more elegant legend with simple lines matching histogram edge colors - Positions the legend outside the plot to avoid overlapping with data*\n\nsource\n\n\nmake_circos_plot\n\n make_circos_plot (data)",
+    "crumbs": [
+      "core"
+    ]
+  }
+]
