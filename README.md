@@ -300,7 +300,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-11-output-1.png)
+![](index_files/figure-commonmark/cell-12-output-1.png)
 
 - **Expected in clonal samples**: Frequencies clustered at extremes (0
   or 1)
@@ -352,7 +352,7 @@ plt.savefig('../data/Allele_Frequency_SNVs.png')
     step 2 only snv variants: (511, 11)
     selected variants: (129, 7)
 
-![](index_files/figure-commonmark/cell-12-output-2.png)
+![](index_files/figure-commonmark/cell-13-output-2.png)
 
 ## 🧬 Distinct Evolutionary Trajectories Revealed
 
@@ -385,7 +385,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-13-output-1.png)
+![](index_files/figure-commonmark/cell-14-output-1.png)
 
 ## From SNVs to INDELs: Exploring Different Variant Dynamics
 
@@ -425,7 +425,7 @@ plt.savefig('../data/Allele_Frequency_INDELs.png')
     step 2 only snv variants: (610, 11)
     selected variants: (349, 7)
 
-![](index_files/figure-commonmark/cell-15-output-2.png)
+![](index_files/figure-commonmark/cell-16-output-2.png)
 
 ## 🧬 Distinct Clustering Patterns in INDELs
 
@@ -450,7 +450,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-16-output-1.png)
+![](index_files/figure-commonmark/cell-17-output-1.png)
 
 ## 📊 Accelerated INDEL Evolution
 
@@ -474,7 +474,7 @@ data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
 make_circos_plot(data)
 ```
 
-![](index_files/figure-commonmark/cell-17-output-1.png)
+![](index_files/figure-commonmark/cell-18-output-1.png)
 
 ## 🧬 Genomic Distribution Patterns
 
@@ -617,7 +617,7 @@ plt.ylim(0,1.1)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-24-output-1.png)
+![](index_files/figure-commonmark/cell-25-output-1.png)
 
 ### Key Variant Trajectories
 
@@ -641,3 +641,6 @@ Install latest from the GitHub
 ``` sh
 $ pip install git+https://github.com/mtinti/cryptosporidium_host_adaptation.git
 ```
+
+> In your env you want: - samtools (Version: 1.21) - bcftools (Version:
+> 1.21)

@@ -344,7 +344,7 @@ def make_circos_plot(data):
         'CM000436': 1344712
     }
 
-    color_dict = {'M': 'blue', 'C': 'magenta'}
+    color_dict = {'M': 'green', 'C': 'blue'}
 
     circos = Circos(seqid2size, space=3, start=-83, end=265, endspace=False)
     circos.text("C. parvum IowaII", r=5, size=18, font={'style': 'italic'})
@@ -399,8 +399,9 @@ def make_circos_plot(data):
             c_track.yticks([0, 1], ["0", "1"], side="left")
 
             
-            circos.text("Cow", r=c_track.r_center, deg=-90, color="magenta")
-            circos.text("Mouse", r=m_track.r_center, deg=-90, color="blue")
+            circos.text("Cow", r=c_track.r_center, deg=-90, color="blue")
+            circos.text("Mouse", r=m_track.r_center, deg=-90, color="green")
     
     circos.plotfig()
-    
+    circos.savefig('../data/Circos.svg')
+    circos.savefig('../data/Circos.png')
