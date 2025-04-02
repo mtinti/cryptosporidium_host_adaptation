@@ -6,6 +6,7 @@
 > [![](https://zenodo.org/badge/DOI/10.5281/zenodo.15126025.svg)](https://doi.org/10.5281/zenodo.15126025)
 > [![](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mtinti/cryptosporidium_host_adaptation/HEAD?urlpath=%2Fdoc%2Ftree%2Fnbs%2Findex.ipynb)
 > [![](https://img.shields.io/badge/Delightful%20data-analysis-green?style=flat.png)](https://mtinti.github.io/cryptosporidium_host_adaptation/)
+> [![](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=whitet.png)](https://github.com/mtinti/cryptosporidium_host_adaptation)
 
 ## The Origin: Strain M4
 
