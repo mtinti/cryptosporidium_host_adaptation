@@ -693,14 +693,24 @@ host-dependent pattern:
 - In mouse passages: Frequency increases
 - In cow passages: Frequency remains relatively stable
 
-### Reproducibility
+## Reproducibility and Availability
 
-Install latest from the GitHub
-[repository](https://github.com/mtinti/cryptosporidium_host_adaptation):
+The complete analysis pipeline is available as a Python package in our
+GitHub repository
 
-``` sh
-$ pip install git+https://github.com/mtinti/cryptosporidium_host_adaptation.git
+### Installation
+
+``` bash
+pip install git+https://github.com/mtinti/cryptosporidium_host_adaptation.git
 ```
 
-> In your env you want: - samtools (Version: 1.21) - bcftools (Version:
-> 1.21)
+### Dependencies
+
+This pipeline was developed and tested with: - samtools (Version:
+1.21) - bcftools (Version: 1.21)
+
+### Interactive Analysis
+
+For interactive exploration and reproducibility, we provide Jupyter
+notebooks accessible through MyBinder. \> The computational environment
+includes all necessary dependencies pre-configured.
