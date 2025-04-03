@@ -473,6 +473,8 @@ clean_axes(ax)
 plt.show()
 ```
 
+![](index_files/figure-commonmark/cell-17-output-1.png)
+
 ## From SNVs to INDELs: Exploring Different Variant Dynamics
 
 > While our overall frequency analysis revealed peaks near 0 and 1
@@ -507,6 +509,12 @@ plt.savefig('../data/Allele_Frequency_INDELs.svg')
 plt.savefig('../data/Allele_Frequency_INDELs.png')
 ```
 
+    step 1 starting variants: (1121, 11)
+    step 2 only snv variants: (610, 11)
+    selected variants: (349, 7)
+
+![](index_files/figure-commonmark/cell-19-output-2.png)
+
 ## 🧬 Distinct Clustering Patterns in INDELs
 
 When applying our clustering strategy to INDELs, we observed strikingly
@@ -530,6 +538,8 @@ clean_axes(ax)
 plt.show()
 ```
 
+![](index_files/figure-commonmark/cell-20-output-1.png)
+
 ## 📊 Accelerated INDEL Evolution
 
 > *“The predominance of low-frequency INDELs compared to the SNVs
@@ -551,6 +561,8 @@ plt.show()
 data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
 make_circos_plot(data)
 ```
+
+![](index_files/figure-commonmark/cell-21-output-1.png)
 
 ## 🧬 Genomic Distribution Patterns
 
@@ -582,6 +594,30 @@ del data['INFO']
 data.head()
 ```
 
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&#10;    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&#10;    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|  |  | AF_M7 | AF_M5 | AF_M6 | AF_M4 | AF_C3 | AF_C2 | AF_C1 | variant_type | impact | gene_id | allele |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| \#CHROM | POS |  |  |  |  |  |  |  |  |  |  |  |
+| CM000429 | 76625 | 0.475450 | 0.618085 | 0.555582 | 0.714792 | 1.000000 | 0.536094 | 0.772606 | synonymous_variant | LOW | cgd1_340 | G |
+|  | 82019 | 1.000000 | 0.777264 | 0.917603 | 0.857852 | 0.692135 | 0.679706 | 0.759930 | synonymous_variant | LOW | cgd1_360 | T |
+|  | 82192 | 1.000000 | 0.784465 | 0.833228 | 0.745520 | 0.527490 | 0.692847 | 0.673662 | missense_variant | MODERATE | cgd1_360 | A |
+|  | 702600 | 0.725550 | 0.837162 | 0.681081 | 0.922297 | 0.901888 | 0.861137 | 1.000000 | missense_variant | MODERATE | cgd1_3190 | A |
+|  | 702605 | 0.722545 | 0.892645 | 0.694440 | 0.953358 | 1.000000 | 0.861506 | 0.979373 | synonymous_variant | LOW | cgd1_3190 | A |
+
+</div>
+
 ## Variant Type Distribution and High-Impact Mutations
 
 > After extracting SnpEff annotations, we analyzed the distribution of
@@ -591,12 +627,40 @@ data.head()
 data['impact'].value_counts()
 ```
 
+    impact
+    MODERATE    52
+    MODIFIER    41
+    LOW         34
+    HIGH         2
+    Name: count, dtype: int64
+
 > Intriguingly, we identified only two HIGH impact variants in our
 > dataset, lets have a look 🔍
 
 ``` python
 data[data['impact']=='HIGH']
 ```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&#10;    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&#10;    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|  |  | AF_M7 | AF_M5 | AF_M6 | AF_M4 | AF_C3 | AF_C2 | AF_C1 | variant_type | impact | gene_id | allele |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| \#CHROM | POS |  |  |  |  |  |  |  |  |  |  |  |
+| CM000435 | 620700 | 0.993550 | 0.736207 | 1.000000 | 0.679239 | 0.629232 | 0.596495 | 0.614746 | stop_gained | HIGH | cgd7_2620 | A |
+| CM000436 | 170586 | 0.496313 | 1.000000 | 0.595576 | 0.962636 | 0.739837 | 0.945591 | 0.967480 | stop_lost&splice_region_variant | HIGH | cgd8_670 | C |
+
+</div>
 
 > we created trajectory visualizations that track their frequencies
 > across sequential passages in both lineages.
@@ -612,6 +676,8 @@ clean_axes(axes[1]).set_title('COW')
 plt.ylim(0,1.1)
 plt.show()
 ```
+
+![](index_files/figure-commonmark/cell-27-output-1.png)
 
 ### Key Variant Trajectories
 
