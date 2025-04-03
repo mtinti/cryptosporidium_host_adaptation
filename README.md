@@ -374,6 +374,35 @@ The hierarchical clustering dendrogram revealed several patterns:
     murine passages (M4-M5) than to the later murine passages (M6-M7).
     Bovine adaptation might be slower to kick in.”*
 
+## Determining Optimal Number of SNV Clusters
+
+> Upon visual inspection of the hierarchical clustering dendrogram, we
+> observed what appeared to be 3-4 distinct clusters of variants. To
+> validate this initial observation and determine the optimal number of
+> clusters more objectively, we employed two widely-used cluster
+> validation techniques: the silhouette method and elbow analysis.
+
+``` python
+fig, ax, inertia_values, silhouette_values = kmeans_cluster_analysis(
+    clustering_data,
+    cluster_sizes=[1,2,3,4,5,6,7,8],
+    figsize=(6,5)
+)
+```
+
+![](index_files/figure-commonmark/cell-14-output-1.png)
+
+## Validation Results Support Three Main Clusters
+
+The quantitative cluster validation analyses support our initial visual
+assessment. \> \### Future Directions: Correlating Cluster Patterns with
+GO Annotations \> Having established three distinct clusters of SNV
+frequency patterns that correlate with host adaptation trajectories, we
+plan to extend this analysis by integrating Gene Ontology (GO)
+annotations. This functional enrichment approach will allow us to
+determine whether these evolutionary clusters represent coordinated
+changes in specific biological pathways or molecular functions.
+
 ## 🔍 Frequency Distribution Analysis SNVs
 
 ``` python
@@ -388,7 +417,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-14-output-1.png)
+![](index_files/figure-commonmark/cell-16-output-1.png)
 
 ## From SNVs to INDELs: Exploring Different Variant Dynamics
 
@@ -428,7 +457,7 @@ plt.savefig('../data/Allele_Frequency_INDELs.png')
     step 2 only snv variants: (610, 11)
     selected variants: (349, 7)
 
-![](index_files/figure-commonmark/cell-16-output-2.png)
+![](index_files/figure-commonmark/cell-18-output-2.png)
 
 ## 🧬 Distinct Clustering Patterns in INDELs
 
@@ -453,7 +482,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-17-output-1.png)
+![](index_files/figure-commonmark/cell-19-output-1.png)
 
 ## 📊 Accelerated INDEL Evolution
 
@@ -477,7 +506,7 @@ data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
 make_circos_plot(data)
 ```
 
-![](index_files/figure-commonmark/cell-18-output-1.png)
+![](index_files/figure-commonmark/cell-20-output-1.png)
 
 ## 🧬 Genomic Distribution Patterns
 
@@ -620,7 +649,7 @@ plt.ylim(0,1.1)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-25-output-1.png)
+![](index_files/figure-commonmark/cell-27-output-1.png)
 
 ### Key Variant Trajectories
 
