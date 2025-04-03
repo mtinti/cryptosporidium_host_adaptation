@@ -388,11 +388,12 @@ fig, ax, inertia_values, silhouette_values = kmeans_cluster_analysis(
     cluster_sizes=[1,2,3,4,5,6,7,8],
     figsize=(6,5)
 )
+clean_axes(ax)
 ```
 
 ![](index_files/figure-commonmark/cell-14-output-1.png)
 
-> ## Validation Results Support Three Main Clusters
+## Validation Results Support Three Main Clusters
 
 > Our quantitative cluster validation analyses strongly confirm our
 > initial visual assessment. The Silhouette analysis reveals comparable
@@ -412,13 +413,14 @@ for c in clustering_data.cluster.unique():
     clustering_data[clustering_data['cluster']==c][['AF_M7','AF_M6','AF_M5','AF_M4',
                               'AF_C1','AF_C2','AF_C3']].mean().plot(ax=ax,label = f'Cluster: {c}')
 ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+clean_axes(ax)
 plt.title('Cluster Mean Values')
 plt.show()
 ```
 
 ![](index_files/figure-commonmark/cell-15-output-1.png)
 
-> ### Evolutionary trajectories :
+## Evolutionary trajectories :
 
 > When plotting the mean values of variants within each cluster, we
 > observe three distinct evolutionary trajectories: - Dramatic Increase
@@ -427,12 +429,12 @@ plt.show()
 > a modest frequency increase in M6 and M7 - Decrease Cluster: Variants
 > that exhibit declining frequency in M6 and M7
 
-> Notably, across all three clusters, the variant frequencies in early
-> mouse passages (M4 and M5) remain similar to those observed in all
-> bovine passages (C1, C2, and C3). This pattern suggests that
-> significant evolutionary divergence between host lineages begins after
-> the second mouse passage, while the bovine lineage maintains greater
-> genetic similarity to the original population.
+Notably, across all three clusters, the variant frequencies in early
+mouse passages (M4 and M5) remain similar to those observed in all
+bovine passages (C1, C2, and C3). This pattern suggests that significant
+evolutionary divergence between host lineages begins after the second
+mouse passage, while the bovine lineage maintains greater genetic
+similarity to the original population.
 
 ## Future Directions: Correlating Cluster Patterns with GO Annotations
 
