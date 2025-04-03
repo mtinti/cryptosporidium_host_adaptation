@@ -392,16 +392,56 @@ fig, ax, inertia_values, silhouette_values = kmeans_cluster_analysis(
 
 ![](index_files/figure-commonmark/cell-14-output-1.png)
 
-## Validation Results Support Three Main Clusters
+> ## Validation Results Support Three Main Clusters
 
-The quantitative cluster validation analyses support our initial visual
-assessment. \> \### Future Directions: Correlating Cluster Patterns with
-GO Annotations \> Having established three distinct clusters of SNV
-frequency patterns that correlate with host adaptation trajectories, we
-plan to extend this analysis by integrating Gene Ontology (GO)
-annotations. This functional enrichment approach will allow us to
-determine whether these evolutionary clusters represent coordinated
-changes in specific biological pathways or molecular functions.
+> Our quantitative cluster validation analyses strongly confirm our
+> initial visual assessment. The Silhouette analysis reveals comparable
+> values for cluster numbers between 2 and 4, with scores declining
+> steadily beyond 5 clusters. Meanwhile, the helbow plot displays a
+> clear inflection point at 3 clusters. Based on these complementary
+> validation techniques, we can confidently determine that three
+> represents the optimal number of clusters for our dataset.
+
+``` python
+from sklearn.cluster import KMeans
+kmeans = KMeans(n_clusters=3, random_state=42, n_init=10)
+kmeans.fit(clustering_data[['AF_M7','AF_M6','AF_M5','AF_M4','AF_C1','AF_C2','AF_C3']])
+clustering_data['cluster']=kmeans.labels_
+fig,ax = plt.subplots(figsize=(6,4))
+for c in clustering_data.cluster.unique():
+    clustering_data[clustering_data['cluster']==c][['AF_M7','AF_M6','AF_M5','AF_M4',
+                              'AF_C1','AF_C2','AF_C3']].mean().plot(ax=ax,label = f'Cluster: {c}')
+ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+plt.title('Cluster Mean Values')
+plt.show()
+```
+
+![](index_files/figure-commonmark/cell-15-output-1.png)
+
+> ### Evolutionary trajectories :
+
+> When plotting the mean values of variants within each cluster, we
+> observe three distinct evolutionary trajectories: - Dramatic Increase
+> Cluster: Variants that show a substantial frequency increase in later
+> mouse passages (M6 and M7) - Moderate Increase Cluster: Variants with
+> a modest frequency increase in M6 and M7 - Decrease Cluster: Variants
+> that exhibit declining frequency in M6 and M7
+
+> Notably, across all three clusters, the variant frequencies in early
+> mouse passages (M4 and M5) remain similar to those observed in all
+> bovine passages (C1, C2, and C3). This pattern suggests that
+> significant evolutionary divergence between host lineages begins after
+> the second mouse passage, while the bovine lineage maintains greater
+> genetic similarity to the original population.
+
+## Future Directions: Correlating Cluster Patterns with GO Annotations
+
+> Having established three distinct clusters of SNV frequency patterns
+> that correlate with host adaptation trajectories, we plan to extend
+> this analysis by integrating Gene Ontology (GO) annotations. This
+> functional enrichment approach will allow us to determine whether
+> these evolutionary clusters represent coordinated changes in specific
+> biological pathways or molecular functions.
 
 ## 🔍 Frequency Distribution Analysis SNVs
 
@@ -417,7 +457,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-16-output-1.png)
+![](index_files/figure-commonmark/cell-17-output-1.png)
 
 ## From SNVs to INDELs: Exploring Different Variant Dynamics
 
@@ -457,7 +497,7 @@ plt.savefig('../data/Allele_Frequency_INDELs.png')
     step 2 only snv variants: (610, 11)
     selected variants: (349, 7)
 
-![](index_files/figure-commonmark/cell-18-output-2.png)
+![](index_files/figure-commonmark/cell-19-output-2.png)
 
 ## 🧬 Distinct Clustering Patterns in INDELs
 
@@ -482,7 +522,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-19-output-1.png)
+![](index_files/figure-commonmark/cell-20-output-1.png)
 
 ## 📊 Accelerated INDEL Evolution
 
@@ -506,7 +546,7 @@ data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
 make_circos_plot(data)
 ```
 
-![](index_files/figure-commonmark/cell-20-output-1.png)
+![](index_files/figure-commonmark/cell-21-output-1.png)
 
 ## 🧬 Genomic Distribution Patterns
 
@@ -528,34 +568,6 @@ The circular genome plot revealed several striking patterns:
 
 Let’s select again our SNV dataset used for clustering and add the INFO
 field from the vcf file
-
-``` python
-data.head()
-```
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-|  |  | AF_M7 | AF_M5 | AF_M6 | AF_M4 | AF_C3 | AF_C2 | AF_C1 | INFO |
-|----|----|----|----|----|----|----|----|----|----|
-| \#CHROM | POS |  |  |  |  |  |  |  |  |
-| CM000429 | 76625 | 0.475450 | 0.618085 | 0.555582 | 0.714792 | 1.000000 | 0.536094 | 0.772606 | AB=0;ABP=0;AC=1;AF=0.142857;AN=7;AO=248;CIGAR=... |
-|  | 82019 | 1.000000 | 0.777264 | 0.917603 | 0.857852 | 0.692135 | 0.679706 | 0.759930 | AB=0;ABP=0;AC=7;AF=1;AN=7;AO=410;CIGAR=1X;DP=5... |
-|  | 82192 | 1.000000 | 0.784465 | 0.833228 | 0.745520 | 0.527490 | 0.692847 | 0.673662 | AB=0;ABP=0;AC=6;AF=0.857143;AN=7;AO=398;CIGAR=... |
-|  | 702600 | 0.725550 | 0.837162 | 0.681081 | 0.922297 | 0.901888 | 0.861137 | 1.000000 | AB=0;ABP=0;AC=7;AF=1;AN=7;AO=451;CIGAR=1X;DP=6... |
-|  | 702605 | 0.722545 | 0.892645 | 0.694440 | 0.953358 | 1.000000 | 0.861506 | 0.979373 | AB=0;ABP=0;AC=7;AF=1;AN=7;AO=488;CIGAR=1X;DP=6... |
-
-</div>
 
 > We use a parsing strategy to extract key annotation components from
 > SnpEff
