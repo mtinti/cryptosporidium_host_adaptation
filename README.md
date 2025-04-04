@@ -604,6 +604,10 @@ host-dependent pattern:
 - In mouse passages: Frequency increases
 - In cow passages: Frequency remains relatively stable
 
+``` python
+#clustering_data[clustering_data['impact']=='MODERATE'].groupby('gene_id').size().sort_values().tail(5)
+```
+
 ## Future Directions: Correlating Cluster Patterns with GO Annotations
 
 > Having established three distinct clusters of SNV frequency patterns
@@ -627,7 +631,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-21-output-1.png)
+![](index_files/figure-commonmark/cell-23-output-1.png)
 
 ## From SNVs to INDELs: Exploring Different Variant Dynamics
 
@@ -651,14 +655,15 @@ print(f'step 1 starting variants: {data.shape}')
 data=data[(data['ALT'].str.len()!=1)]
 print(f'step 2 only snv variants: {data.shape}')
 
-clustering_data = data[['AF_M7', 'AF_M5', 'AF_M6', 'AF_M4','AF_C3', 'AF_C2', 'AF_C1']]
+clustering_data = data[['#CHROM','POS','AF_M7', 'AF_M5', 'AF_M6', 'AF_M4','AF_C3', 'AF_C2', 'AF_C1']]
+clustering_data=clustering_data.set_index(['#CHROM','POS'])
 clustering_data = clustering_data.divide(clustering_data.max(axis=1),axis=0)
 clustering_max=clustering_data.max(axis=1)
 clustering_min=clustering_data.min(axis=1)
 clustering_data = clustering_data[(clustering_max-clustering_min)>0.3]
 
 print('selected variants:', clustering_data.shape)
-sns.clustermap(clustering_data,cmap='Blues',figsize=(4,6))
+sns.clustermap(clustering_data,cmap='Blues',figsize=(6,6))
 plt.savefig('../data/Allele_Frequency_INDELs.svg')
 plt.savefig('../data/Allele_Frequency_INDELs.png')
 ```
@@ -667,7 +672,7 @@ plt.savefig('../data/Allele_Frequency_INDELs.png')
     step 2 only snv variants: (610, 11)
     selected variants: (349, 7)
 
-![](index_files/figure-commonmark/cell-23-output-2.png)
+![](index_files/figure-commonmark/cell-25-output-2.png)
 
 ## 🧬 Distinct Clustering Patterns in INDELs
 
@@ -692,7 +697,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-24-output-1.png)
+![](index_files/figure-commonmark/cell-26-output-1.png)
 
 ## 📊 Accelerated INDEL Evolution
 
@@ -716,7 +721,7 @@ data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
 make_circos_plot(data)
 ```
 
-![](index_files/figure-commonmark/cell-25-output-1.png)
+![](index_files/figure-commonmark/cell-27-output-1.png)
 
 ## 🧬 Genomic Distribution Patterns
 
