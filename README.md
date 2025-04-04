@@ -340,13 +340,14 @@ print(f'step 1 starting variants: {data.shape}')
 data=data[(data['ALT'].str.len()==1)]
 print(f'step 2 only snv variants: {data.shape}')
 
-clustering_data = data[['AF_M7', 'AF_M5', 'AF_M6', 'AF_M4','AF_C3', 'AF_C2', 'AF_C1']]
+clustering_data = data[['#CHROM','POS','AF_M7', 'AF_M5', 'AF_M6', 'AF_M4','AF_C3', 'AF_C2', 'AF_C1']]
+clustering_data=clustering_data.set_index(['#CHROM','POS'])
 clustering_data = clustering_data.divide(clustering_data.max(axis=1),axis=0)
 clustering_max=clustering_data.max(axis=1)
 clustering_min=clustering_data.min(axis=1)
 clustering_data = clustering_data[(clustering_max-clustering_min)>0.3]
 print('selected variants:', clustering_data.shape)
-sns.clustermap(clustering_data,cmap='Blues',figsize=(4,6))
+sns.clustermap(clustering_data,cmap='Blues',figsize=(6,6))
 plt.savefig('../data/Allele_Frequency_SNVs.svg')
 plt.savefig('../data/Allele_Frequency_SNVs.png')
 ```
@@ -450,6 +451,159 @@ evolutionary divergence between host lineages begins after the second
 mouse passage, while the bovine lineage maintains greater genetic
 similarity to the original population.
 
+# High Impact Variants: Tracking Protein-Altering Mutations
+
+## 🧬 Decoding Functional Consequences
+
+> With our variants annotated using SnpEff, we can now delve deeper into
+> their functional implications—moving beyond mere genomic positions to
+> understand how these mutations potentially reshape Cryptosporidium
+> biology.
+
+``` python
+df_vcf = read_vcf( "../data/filtered_final.vcf")
+df_vcf = df_vcf.set_index(['#CHROM','POS'])
+df_vcf.head()
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&#10;    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&#10;    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|  |  | ID | REF | ALT | QUAL | FILTER | INFO | FORMAT | M7 | M5 | M4 | M6 | C3 | C2 | C1 |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| \#CHROM | POS |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| CM000429 | 60867 | . | TAAAAAAAAAAGATAT | TAAAAAAAAAAAGATTT,TAAAAAAAAAAAGATAT,TAAAAAAAAA... | 10088.400 | PASS | AB=0,0,0;ABP=0,0,0;AC=0,7,0;AF=0,1,0;AN=7;AO=1... | GT:GQ:DP:AD:RO:QR:AO:QA:GL | 2:138:82:9,2,67,2:9:296:2,67,2:24,2218,68:-172... | 2:138:46:3,2,35,1:3:100:2,35,1:24,1116,34:-91.... | 2:138:69:4,4,59,1:4:132:4,59,1:48,1980,34:-166... | 2:138:82:14,2,62,1:14:461:2,62,1:24,2092,26:-1... | 2:138:57:5,1,45,1:5:163:1,45,1:12,1492,34:-119... | 2:138:69:1,0,60,4:1:34:0,60,4:0,1966,136:-173.... | 2:138:62:4,1,50,4:4:130:1,50,4:12,1678,128:-13... |
+|  | 60889 | . | ACCCCACT | ACCCCCACT | 11705.800 | PASS | AB=0;ABP=0;AC=7;AF=1;AN=7;AO=435;CIGAR=1M1I7M;... | GT:GQ:DP:AD:RO:QR:AO:QA:GL | 1:137:90:9,81:9:295:81:2686:-215.126,0 | 1:137:53:1,50:1:34:50:1596:-140.656,0 | 1:137:70:2,66:2:68:66:2184:-190.372,0 | 1:137:82:11,70:11:359:70:2241:-169.324,0 | 1:137:45:5,40:5:169:40:1237:-96.064,0 | 1:137:68:1,66:1:31:66:2174:-192.923,0 | 1:137:69:4,62:4:126:62:2002:-168.787,0 |
+|  | 76625 | . | A | G | 265.872 | PASS | AB=0;ABP=0;AC=1;AF=0.142857;AN=7;AO=248;CIGAR=... | GT:GQ:DP:AD:RO:QR:AO:QA:GL | 0:131:104:76,28:76:2560:28:952:0,-144.672 | 0:131:80:52,28:52:1738:28:930:0,-72.6994 | 0:131:84:50,34:50:1596:34:1156:0,-39.5691 | 0:131:89:61,28:61:2066:28:944:0,-100.949 | 1:131:83:36,47:36:1216:47:1598:-34.3706,0 | 0:131:112:78,34:78:2630:34:1126:0,-135.322 | 0:131:112:63,49:63:2126:49:1658:0,-42.1062 |
+|  | 82019 | . | A | T | 8192.190 | PASS | AB=0;ABP=0;AC=7;AF=1;AN=7;AO=410;CIGAR=1X;DP=5... | GT:GQ:DP:AD:RO:QR:AO:QA:GL | 1:160:98:9,89:9:306:89:2994:-241.841,0 | 1:160:51:15,36:15:510:36:1186:-60.8115,0 | 1:160:86:19,67:19:638:67:2240:-144.133,0 | 1:160:90:15,75:15:488:75:2488:-179.952,0 | 1:160:70:26,44:26:862:44:1472:-54.8869,0 | 1:160:81:31,50:31:1046:50:1662:-55.4182,0 | 1:160:71:22,49:22:748:49:1666:-82.5935,0 |
+|  | 82192 | . | G | A | 6765.840 | PASS | AB=0;ABP=0;AC=6;AF=0.857143;AN=7;AO=398;CIGAR=... | GT:GQ:DP:AD:RO:QR:AO:QA:GL | 1:134:104:11,93:11:374:93:3124:-247.418,0 | 1:134:67:20,47:20:658:47:1598:-84.5836,0 | 1:134:75:25,50:25:842:50:1692:-76.4771,0 | 1:134:102:26,76:26:846:76:2568:-154.943,0 | 0:0:53:28,25:28:944:25:850:0,-8.45503 | 1:134:92:35,57:35:1190:57:1938:-67.2984,0 | 1:134:83:33,50:33:1084:50:1692:-54.7114,0 |
+
+</div>
+
+> We now add the vcf INFO to the dataset and extract variant effect
+
+``` python
+#port INFO
+clustering_data = clustering_data.join(df_vcf[['INFO']])
+
+#deconstruct INFO
+clustering_data = add_ann_info_to_df(clustering_data)
+del clustering_data['INFO']
+clustering_data.head()
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&#10;    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&#10;    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|  |  | AF_M7 | AF_M5 | AF_M6 | AF_M4 | AF_C3 | AF_C2 | AF_C1 | cluster | variant_type | impact | gene_id | allele |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| \#CHROM | POS |  |  |  |  |  |  |  |  |  |  |  |  |
+| CM000429 | 76625 | 0.475450 | 0.618085 | 0.555582 | 0.714792 | 1.000000 | 0.536094 | 0.772606 | 0 | synonymous_variant | LOW | cgd1_340 | G |
+|  | 82019 | 1.000000 | 0.777264 | 0.917603 | 0.857852 | 0.692135 | 0.679706 | 0.759930 | 1 | synonymous_variant | LOW | cgd1_360 | T |
+|  | 82192 | 1.000000 | 0.784465 | 0.833228 | 0.745520 | 0.527490 | 0.692847 | 0.673662 | 1 | missense_variant | MODERATE | cgd1_360 | A |
+|  | 702600 | 0.725550 | 0.837162 | 0.681081 | 0.922297 | 0.901888 | 0.861137 | 1.000000 | 0 | missense_variant | MODERATE | cgd1_3190 | A |
+|  | 702605 | 0.722545 | 0.892645 | 0.694440 | 0.953358 | 1.000000 | 0.861506 | 0.979373 | 0 | synonymous_variant | LOW | cgd1_3190 | A |
+
+</div>
+
+## Variant Type Distribution and High-Impact Mutations
+
+> After extracting SnpEff annotations, we analyzed the distribution of
+> variant types across impact categories and clusters
+
+``` python
+clustering_data[clustering_data['impact'].isin(
+    ['LOW','MODERATE','HIGH'])].groupby(['impact','cluster']).size()
+```
+
+    impact    cluster
+    HIGH      0           1
+              1           1
+    LOW       0           9
+              1          19
+              2           6
+    MODERATE  0          23
+              1          24
+              2           5
+    dtype: int64
+
+> Intriguingly, we identified only two HIGH impact SNV variants in our
+> dataset, lets have a look 🔍
+
+``` python
+clustering_data[clustering_data['impact']=='HIGH'].iloc[:,7:]
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&#10;    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&#10;    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|  |  | cluster | variant_type | impact | gene_id | allele |
+|----|----|----|----|----|----|----|
+| \#CHROM | POS |  |  |  |  |  |
+| CM000435 | 620700 | 1 | stop_gained | HIGH | cgd7_2620 | A |
+| CM000436 | 170586 | 0 | stop_lost&splice_region_variant | HIGH | cgd8_670 | C |
+
+</div>
+
+> we created trajectory visualizations that track their frequencies
+> across sequential passages in both lineages.
+
+``` python
+fig,axes = plt.subplots(figsize = (10,4), ncols=2,sharey=True)
+clustering_data[clustering_data['impact']=='HIGH'][['AF_M4','AF_M5','AF_M6','AF_M7']].T.plot(ax=axes[0])
+clean_axes(axes[0]).set_title('MOUSE')
+clustering_data[clustering_data['impact']=='HIGH'][['AF_M4','AF_C1','AF_C2','AF_C3']].T.plot(ax=axes[1])
+clean_axes(axes[1]).set_title('COW')
+plt.ylim(0,1.1)
+plt.show()
+```
+
+![](index_files/figure-commonmark/cell-20-output-1.png)
+
+### Key Variant Trajectories
+
+One variant located at **CM000436:170586** (in gene **cgd8_670**)
+displays a pattern of negative selection in both host lineages:
+
+- In mouse passages: Frequency steadily decreases from M4 to M7
+- In cow passages: Similar downward trend more evident at C3
+
+The variant at **CM000435:620700** (in gene **cgd7_2620**) shows a
+host-dependent pattern:
+
+- In mouse passages: Frequency increases
+- In cow passages: Frequency remains relatively stable
+
 ## Future Directions: Correlating Cluster Patterns with GO Annotations
 
 > Having established three distinct clusters of SNV frequency patterns
@@ -473,7 +627,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-17-output-1.png)
+![](index_files/figure-commonmark/cell-21-output-1.png)
 
 ## From SNVs to INDELs: Exploring Different Variant Dynamics
 
@@ -513,7 +667,7 @@ plt.savefig('../data/Allele_Frequency_INDELs.png')
     step 2 only snv variants: (610, 11)
     selected variants: (349, 7)
 
-![](index_files/figure-commonmark/cell-19-output-2.png)
+![](index_files/figure-commonmark/cell-23-output-2.png)
 
 ## 🧬 Distinct Clustering Patterns in INDELs
 
@@ -538,7 +692,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-20-output-1.png)
+![](index_files/figure-commonmark/cell-24-output-1.png)
 
 ## 📊 Accelerated INDEL Evolution
 
@@ -562,7 +716,7 @@ data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
 make_circos_plot(data)
 ```
 
-![](index_files/figure-commonmark/cell-21-output-1.png)
+![](index_files/figure-commonmark/cell-25-output-1.png)
 
 ## 🧬 Genomic Distribution Patterns
 
@@ -572,126 +726,6 @@ The circular genome plot revealed several striking patterns:
 > strikingly non-random, with clear hotspots of both SNVs and INDELs
 > congregating in specific genomic regions other then close to the
 > telomers.”*
-
-# High Impact Variants: Tracking Protein-Altering Mutations
-
-## 🧬 Decoding Functional Consequences
-
-> With our variants annotated using SnpEff, we can now delve deeper into
-> their functional implications—moving beyond mere genomic positions to
-> understand how these mutations potentially reshape Cryptosporidium
-> biology.
-
-Let’s select again our SNV dataset used for clustering and add the INFO
-field from the vcf file
-
-> We use a parsing strategy to extract key annotation components from
-> SnpEff
-
-``` python
-data = add_ann_info_to_df(data)
-del data['INFO']
-data.head()
-```
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-|  |  | AF_M7 | AF_M5 | AF_M6 | AF_M4 | AF_C3 | AF_C2 | AF_C1 | variant_type | impact | gene_id | allele |
-|----|----|----|----|----|----|----|----|----|----|----|----|----|
-| \#CHROM | POS |  |  |  |  |  |  |  |  |  |  |  |
-| CM000429 | 76625 | 0.475450 | 0.618085 | 0.555582 | 0.714792 | 1.000000 | 0.536094 | 0.772606 | synonymous_variant | LOW | cgd1_340 | G |
-|  | 82019 | 1.000000 | 0.777264 | 0.917603 | 0.857852 | 0.692135 | 0.679706 | 0.759930 | synonymous_variant | LOW | cgd1_360 | T |
-|  | 82192 | 1.000000 | 0.784465 | 0.833228 | 0.745520 | 0.527490 | 0.692847 | 0.673662 | missense_variant | MODERATE | cgd1_360 | A |
-|  | 702600 | 0.725550 | 0.837162 | 0.681081 | 0.922297 | 0.901888 | 0.861137 | 1.000000 | missense_variant | MODERATE | cgd1_3190 | A |
-|  | 702605 | 0.722545 | 0.892645 | 0.694440 | 0.953358 | 1.000000 | 0.861506 | 0.979373 | synonymous_variant | LOW | cgd1_3190 | A |
-
-</div>
-
-## Variant Type Distribution and High-Impact Mutations
-
-> After extracting SnpEff annotations, we analyzed the distribution of
-> variant types across impact categories
-
-``` python
-data['impact'].value_counts()
-```
-
-    impact
-    MODERATE    52
-    MODIFIER    41
-    LOW         34
-    HIGH         2
-    Name: count, dtype: int64
-
-> Intriguingly, we identified only two HIGH impact variants in our
-> dataset, lets have a look 🔍
-
-``` python
-data[data['impact']=='HIGH']
-```
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-|  |  | AF_M7 | AF_M5 | AF_M6 | AF_M4 | AF_C3 | AF_C2 | AF_C1 | variant_type | impact | gene_id | allele |
-|----|----|----|----|----|----|----|----|----|----|----|----|----|
-| \#CHROM | POS |  |  |  |  |  |  |  |  |  |  |  |
-| CM000435 | 620700 | 0.993550 | 0.736207 | 1.000000 | 0.679239 | 0.629232 | 0.596495 | 0.614746 | stop_gained | HIGH | cgd7_2620 | A |
-| CM000436 | 170586 | 0.496313 | 1.000000 | 0.595576 | 0.962636 | 0.739837 | 0.945591 | 0.967480 | stop_lost&splice_region_variant | HIGH | cgd8_670 | C |
-
-</div>
-
-> we created trajectory visualizations that track their frequencies
-> across sequential passages in both lineages.
-
-### Plot trajectory in mouse and cow
-
-``` python
-fig,axes = plt.subplots(figsize = (10,4), ncols=2,sharey=True)
-data[data['impact']=='HIGH'][['AF_M4','AF_M5','AF_M6','AF_M7']].T.plot(ax=axes[0])
-clean_axes(axes[0]).set_title('MOUSE')
-data[data['impact']=='HIGH'][['AF_M4','AF_C1','AF_C2','AF_C3']].T.plot(ax=axes[1])
-clean_axes(axes[1]).set_title('COW')
-plt.ylim(0,1.1)
-plt.show()
-```
-
-![](index_files/figure-commonmark/cell-27-output-1.png)
-
-### Key Variant Trajectories
-
-One variant located at **CM000436:170586** (in gene **cgd8_670**)
-displays a pattern of negative selection in both host lineages:
-
-- In mouse passages: Frequency steadily decreases from M4 to M7
-- In cow passages: Similar downward trend more evident at C3
-
-The variant at **CM000435:620700** (in gene **cgd7_2620**) shows a
-host-dependent pattern:
-
-- In mouse passages: Frequency increases
-- In cow passages: Frequency remains relatively stable
 
 ## Reproducibility and Availability
 
