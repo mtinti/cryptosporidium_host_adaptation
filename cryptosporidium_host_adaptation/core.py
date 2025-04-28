@@ -5,7 +5,7 @@
 # %% auto 0
 __all__ = ['count_variants', 'filter_variants', 'read_vcf', 'find_index', 'expand_multiallelic_variants', 'compute_frequencies',
            'extract_first_ann', 'add_ann_info_to_df', 'mod_hist_legend', 'clean_axes', 'make_circos_plot',
-           'kmeans_cluster_analysis', 'elbow_point']
+           'kmeans_cluster_analysis', 'elbow_point', 'analyze_frequency_distribution', 'plot_chromosomal_af_values']
 
 # %% ../nbs/00_core.ipynb 4
 import subprocess
@@ -23,6 +23,12 @@ import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import silhouette_score
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.mixture import GaussianMixture
+import seaborn as sns
+from scipy.stats import norm
 
 # %% ../nbs/00_core.ipynb 5
 def count_variants(vcf_file):
@@ -591,3 +597,228 @@ def elbow_point(values):
     if len(curvature) <= 2:
         return 0
     return np.argmax(curvature[1:-1]) + 1
+
+# %% ../nbs/00_core.ipynb 19
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.mixture import GaussianMixture
+
+def analyze_frequency_distribution(frequency_data, n_iter=100, min_k=1, max_k=5):
+    """Fit GMMs with different components and compare AIC scores."""
+    # Prepare data for GMM (must be 2D array)
+    X = frequency_data.values.reshape(-1, 1)
+    
+    # Store results
+    aic_results = {k: [] for k in range(min_k, max_k+1)}
+    
+    # Fit models with different k values
+    for k in range(min_k, max_k+1):
+        print(f"Fitting models with k={k}")
+        for i in range(n_iter):
+            gmm = GaussianMixture(n_components=k, random_state=i)
+            gmm.fit(X)
+            aic_results[k].append(gmm.aic(X))
+    
+    # Calculate statistics
+    aic_means = [np.mean(aic_results[k]) for k in range(min_k, max_k+1)]
+    aic_stds = [np.std(aic_results[k]) for k in range(min_k, max_k+1)]
+    k_values = list(range(min_k, max_k+1))
+    
+    # Plot results
+    plt.figure(figsize=(10, 6))
+    plt.errorbar(k_values, aic_means, yerr=aic_stds, marker='o', capsize=6, linestyle='-', linewidth=2)
+    plt.xlabel('Number of Components (k)', fontsize=12)
+    plt.ylabel('AIC Score (Mean ± SD)', fontsize=12)
+    plt.title('AIC Scores for GMM with Different Numbers of Components', fontsize=14)
+    plt.xticks(k_values)
+    plt.grid(True, alpha=0.3)
+    
+    # Find best k based on lowest mean AIC
+    best_k = k_values[np.argmin(aic_means)]
+    plt.annotate(f'Best k = {best_k}', 
+                xy=(best_k, min(aic_means)), 
+                xytext=(best_k, min(aic_means) - 0.05 * (max(aic_means) - min(aic_means))),
+                ha='center', fontsize=12, fontweight='bold')
+    
+    return k_values, aic_means, aic_stds, best_k
+
+
+# %% ../nbs/00_core.ipynb 20
+def plot_chromosomal_af_values(df):
+    # Get list of all AF columns
+    af_columns = [col for col in df.columns if col.startswith('AF_')]
+    
+    # Create figure and axis
+    plt.figure(figsize=(8, 4))
+    ax = plt.gca()
+    
+    # Get unique chromosomes and assign colors to AF columns
+    chromosomes = df['#CHROM'].unique()
+    colors = plt.cm.tab10(np.linspace(0, 1, len(af_columns)))
+    
+    # Track chromosome boundaries for labeling
+    chrom_boundaries = {}
+    current_x = 0
+    margin = 1000  # Margin to prevent overlap with y-axis
+    current_x += margin
+    
+    # Process each chromosome
+    for chrom in chromosomes:
+        # Get data for this chromosome
+        chrom_data = df[df['#CHROM'] == chrom]
+        
+        # Sort by position
+        chrom_data = chrom_data.sort_values('POS')
+        
+        # Get minimum position for this chromosome
+        min_pos = chrom_data['POS'].min()
+        
+        # Store starting x-coordinate for this chromosome
+        chrom_start = current_x
+        
+        # Plot each AF column for this chromosome
+        for i, af_col in enumerate(af_columns):
+            # Get x-coordinates (adjusted positions)
+            x = chrom_data['POS'] - min_pos + current_x
+            y = chrom_data[af_col]
+            
+            # Plot scatter points only (no lines)
+            ax.scatter(x, y, color=colors[i], alpha=0.7, s=5, 
+                      label=af_col if chrom == chromosomes[0] else "")
+        
+        # Update current_x for next chromosome
+        max_pos = chrom_data['POS'].max()
+        current_x = current_x + (max_pos - min_pos) + 1000  # Add gap between chromosomes
+        
+        # Store ending boundary
+        chrom_boundaries[chrom] = (chrom_start, current_x - 1000)
+    
+    # Add chromosome boxes and labels
+    y_box_position = -0.05
+    box_height = 0.02
+    
+    for chrom, (start, end) in chrom_boundaries.items():
+        # Get short chromosome name (last 3 digits)
+        short_name = str(chrom)[-3:] if len(str(chrom)) > 3 else str(chrom)
+        
+        # Add box - make them more visible
+        center = (start + end) / 2
+        width = end - start
+        rect = plt.Rectangle((start, y_box_position), width, box_height, 
+                           facecolor='gray', edgecolor='black', linewidth=1.5,
+                           transform=ax.transData)
+        ax.add_patch(rect)
+        
+        # Add label below the box
+        plt.text(center, y_box_position - 0.03, short_name, ha='center', va='top', 
+                fontsize=10, fontweight='bold', transform=ax.transData)
+    
+    # Set plot limits and labels
+    ax.set_ylim(-0.1, 1.05)  # Extend lower limit to see boxes clearly
+    ax.set_xlim(0, current_x)
+    ax.set_ylabel('Allele Frequency', fontsize=12)
+    ax.set_title('Allele Frequencies Across Chromosomes', fontsize=14)
+    
+    # Remove all axes except left y-axis
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['bottom'].set_visible(False)
+    xlim = ax.get_xlim()
+    #ax.set_xlim(xlim[0]-1000,xlim[1]+100)
+    # Remove x ticks
+    ax.set_xticks([])
+    
+    # Add legend outside plot
+    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+    
+    plt.tight_layout()
+    return plt
+
+
+
+# %% ../nbs/00_core.ipynb 21
+def analyze_frequency_distribution(frequency_data, n_iter=10, min_k=1, max_k=4):
+    import numpy as np
+    """Fit GMMs with different components and compare AIC scores."""
+    # Prepare data for GMM (must be 2D array)
+    X = frequency_data.values.reshape(-1, 1)
+    
+    # Store results
+    aic_results = {k: [] for k in range(min_k, max_k+1)}
+    best_models = {}
+    
+    # Fit models with different k values
+    for k in range(min_k, max_k+1):
+        print(f"Fitting models with k={k}")
+        best_aic = np.inf
+        best_model = None
+        
+        for i in range(n_iter):
+            gmm = GaussianMixture(n_components=k, random_state=i)
+            gmm.fit(X)
+            aic = gmm.aic(X)
+            aic_results[k].append(aic)
+            
+            # Keep track of best model for each k
+            if aic < best_aic:
+                best_aic = aic
+                best_model = gmm
+        
+        best_models[k] = best_model
+    
+    # Calculate statistics
+    aic_means = [np.mean(aic_results[k]) for k in range(min_k, max_k+1)]
+    aic_stds = [np.std(aic_results[k]) for k in range(min_k, max_k+1)]
+    k_values = list(range(min_k, max_k+1))
+    
+    # Find best k based on lowest mean AIC
+    best_k = k_values[np.argmin(aic_means)]
+    
+    # Create figure with two subplots
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8, 6))
+    
+    # Plot 1: AIC scores
+    ax1.errorbar(k_values, aic_means, yerr=aic_stds, xerr=None, marker='o', capsize=6, linestyle='-', linewidth=2)
+    ax1.set_xlabel('Number of Components (k)', fontsize=12)
+    ax1.set_ylabel('AIC Score (Mean ± SD)', fontsize=12)
+    ax1.set_title('AIC Scores for GMM with Different Numbers of Components', fontsize=14)
+    ax1.set_xticks(k_values)
+    ax1.grid(True, alpha=0.3)
+    ax1.annotate(f'Best k = {best_k}', 
+                xy=(best_k, min(aic_means)), 
+                xytext=(best_k, min(aic_means) - 0.05 * (max(aic_means) - min(aic_means))),
+                ha='center', fontsize=12, fontweight='bold')
+    
+    # Plot 2: Data KDE and components of best model
+    best_gmm = best_models[best_k]
+    x = np.linspace(0, 1, 1000)
+    
+    # Plot KDE of original data (normalized, no histogram)
+    sns.kdeplot(frequency_data, ax=ax2, color="gray", label="Data KDE")
+    
+    # Plot GMM components
+    y = np.zeros_like(x)
+    for i in range(best_k):
+        mean = best_gmm.means_[i, 0]
+        std = np.sqrt(best_gmm.covariances_[i, 0, 0])
+        weight = best_gmm.weights_[i]
+        
+        # Plot individual component
+        component = weight * norm.pdf(x, mean, std)
+        #ax2.plot(x, component, label=f'Component {i+1}: μ={mean:.2f}, w={weight:.2f}')
+        ax2.plot(x, component, label=f'CMP {i+1}')
+        # Add to mixture density
+        y += component
+    
+    # Plot overall density
+    ax2.plot(x, y, 'k-', linewidth=2, label='GMM')
+    
+    ax2.set_xlabel('Frequency', fontsize=12)
+    ax2.set_ylabel('Density', fontsize=12)
+    ax2.set_title(f'Data Distribution and GMM Components (k={best_k})', fontsize=14)
+    ax2.grid(True, alpha=0.3)
+    ax2.legend()
+    
+    plt.tight_layout()
+    return k_values, aic_means, aic_stds, best_k, best_models
