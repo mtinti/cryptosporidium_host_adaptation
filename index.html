@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation – cryptosporidium_host_adaptation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-fe8f458f31a467b51aeabd2275c1e88a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation – cryptosporidium_host_adaptation">
+<meta property="og:description" content="Analysis of Cryptosporidium parvum isolates from mice and neonatal calves">
+<meta property="og:image" content="https://mtinti.github.io/cryptosporidium_host_adaptation/index_files/figure-html/cell-13-output-1.png">
+<meta property="og:site_name" content="cryptosporidium_host_adaptation">
+<meta property="og:image:height" content="451">
+<meta property="og:image:width" content="922">
+<meta name="twitter:title" content="Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation – cryptosporidium_host_adaptation">
+<meta name="twitter:description" content="Analysis of Cryptosporidium parvum isolates from mice and neonatal calves">
+<meta name="twitter:image" content="https://mtinti.github.io/cryptosporidium_host_adaptation/index_files/figure-html/cell-13-output-1.png">
+<meta name="twitter:image-height" content="451">
+<meta name="twitter:image-width" content="922">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">cryptosporidium_host_adaptation</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./core.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">core</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-origin-strain-m4" id="toc-the-origin-strain-m4" class="nav-link active" data-scroll-target="#the-origin-strain-m4">The Origin: Strain M4</a>
+  <ul class="collapse">
+  <li><a href="#the-murine-passage" id="toc-the-murine-passage" class="nav-link" data-scroll-target="#the-murine-passage">🐭 The Murine Passage 🐭</a></li>
+  <li><a href="#the-bovine-passage" id="toc-the-bovine-passage" class="nav-link" data-scroll-target="#the-bovine-passage">🐄 The Bovine Passage 🐄</a></li>
+  </ul></li>
+  <li><a href="#specialized-variant-calling-strategy" id="toc-specialized-variant-calling-strategy" class="nav-link" data-scroll-target="#specialized-variant-calling-strategy">🧬 Specialized Variant Calling Strategy 🧬</a></li>
+  <li><a href="#variant-analysis-filtering-strategy" id="toc-variant-analysis-filtering-strategy" class="nav-link" data-scroll-target="#variant-analysis-filtering-strategy">Variant Analysis: Filtering Strategy</a>
+  <ul class="collapse">
+  <li><a href="#stage-1-quality-based-filtering" id="toc-stage-1-quality-based-filtering" class="nav-link" data-scroll-target="#stage-1-quality-based-filtering">Stage 1: Quality-Based Filtering</a></li>
+  <li><a href="#stage-2-read-depth-optimization" id="toc-stage-2-read-depth-optimization" class="nav-link" data-scroll-target="#stage-2-read-depth-optimization">Stage 2: Read Depth Optimization</a></li>
+  <li><a href="#stage-3-variant-type-selection" id="toc-stage-3-variant-type-selection" class="nav-link" data-scroll-target="#stage-3-variant-type-selection">Stage 3: Variant Type Selection</a></li>
+  </ul></li>
+  <li><a href="#from-raw-variants-to-biological-insights-with-pandas" id="toc-from-raw-variants-to-biological-insights-with-pandas" class="nav-link" data-scroll-target="#from-raw-variants-to-biological-insights-with-pandas">From Raw Variants to Biological Insights 📊 with Pandas 🐼</a>
+  <ul class="collapse">
+  <li><a href="#from-vcf-fields-to-counting-reads-for-each-allele" id="toc-from-vcf-fields-to-counting-reads-for-each-allele" class="nav-link" data-scroll-target="#from-vcf-fields-to-counting-reads-for-each-allele">📝 From VCF Fields to counting reads for each allele</a></li>
+  <li><a href="#keep-variants-where-one-of-the-call-as-at-least-5-supporting-reads" id="toc-keep-variants-where-one-of-the-call-as-at-least-5-supporting-reads" class="nav-link" data-scroll-target="#keep-variants-where-one-of-the-call-as-at-least-5-supporting-reads">📝 Keep variants where one of the call as at least 5 supporting reads</a></li>
+  <li><a href="#frequency-distribution-analysis" id="toc-frequency-distribution-analysis" class="nav-link" data-scroll-target="#frequency-distribution-analysis">🔍 Frequency Distribution Analysis</a></li>
+  </ul></li>
+  <li><a href="#focusing-on-single-nucleotide-variants" id="toc-focusing-on-single-nucleotide-variants" class="nav-link" data-scroll-target="#focusing-on-single-nucleotide-variants">🔬 Focusing on Single Nucleotide Variants</a>
+  <ul class="collapse">
+  <li><a href="#variant-observations" id="toc-variant-observations" class="nav-link" data-scroll-target="#variant-observations">🧬 Variant Observations</a></li>
+  <li><a href="#distinct-evolutionary-trajectories-revealed" id="toc-distinct-evolutionary-trajectories-revealed" class="nav-link" data-scroll-target="#distinct-evolutionary-trajectories-revealed">🧬 Distinct Evolutionary Trajectories Revealed</a></li>
+  <li><a href="#determining-optimal-number-of-snv-clusters" id="toc-determining-optimal-number-of-snv-clusters" class="nav-link" data-scroll-target="#determining-optimal-number-of-snv-clusters">Determining Optimal Number of SNV Clusters</a></li>
+  <li><a href="#validation-results-support-three-main-clusters" id="toc-validation-results-support-three-main-clusters" class="nav-link" data-scroll-target="#validation-results-support-three-main-clusters">Validation Results Support Three Main Clusters</a></li>
+  <li><a href="#evolutionary-trajectories" id="toc-evolutionary-trajectories" class="nav-link" data-scroll-target="#evolutionary-trajectories">Evolutionary trajectories :</a></li>
+  </ul></li>
+  <li><a href="#high-impact-variants-tracking-protein-altering-mutations" id="toc-high-impact-variants-tracking-protein-altering-mutations" class="nav-link" data-scroll-target="#high-impact-variants-tracking-protein-altering-mutations">High Impact Variants: Tracking Protein-Altering Mutations</a>
+  <ul class="collapse">
+  <li><a href="#decoding-functional-consequences" id="toc-decoding-functional-consequences" class="nav-link" data-scroll-target="#decoding-functional-consequences">🧬 Decoding Functional Consequences</a></li>
+  <li><a href="#variant-type-distribution-and-high-impact-mutations" id="toc-variant-type-distribution-and-high-impact-mutations" class="nav-link" data-scroll-target="#variant-type-distribution-and-high-impact-mutations">Variant Type Distribution and High-Impact Mutations</a>
+  <ul class="collapse">
+  <li><a href="#key-variant-trajectories" id="toc-key-variant-trajectories" class="nav-link" data-scroll-target="#key-variant-trajectories">Key Variant Trajectories</a></li>
+  </ul></li>
+  <li><a href="#future-directions-correlating-cluster-patterns-with-go-annotations" id="toc-future-directions-correlating-cluster-patterns-with-go-annotations" class="nav-link" data-scroll-target="#future-directions-correlating-cluster-patterns-with-go-annotations">Future Directions: Correlating Cluster Patterns with GO Annotations</a></li>
+  <li><a href="#frequency-distribution-analysis-snvs" id="toc-frequency-distribution-analysis-snvs" class="nav-link" data-scroll-target="#frequency-distribution-analysis-snvs">🔍 Frequency Distribution Analysis SNVs</a></li>
+  <li><a href="#from-snvs-to-indels-exploring-different-variant-dynamics" id="toc-from-snvs-to-indels-exploring-different-variant-dynamics" class="nav-link" data-scroll-target="#from-snvs-to-indels-exploring-different-variant-dynamics">From SNVs to INDELs: Exploring Different Variant Dynamics</a></li>
+  </ul></li>
+  <li><a href="#focusing-on-indels" id="toc-focusing-on-indels" class="nav-link" data-scroll-target="#focusing-on-indels">🔬 Focusing on INDELS</a>
+  <ul class="collapse">
+  <li><a href="#distinct-clustering-patterns-in-indels" id="toc-distinct-clustering-patterns-in-indels" class="nav-link" data-scroll-target="#distinct-clustering-patterns-in-indels">🧬 Distinct Clustering Patterns in INDELs</a></li>
+  <li><a href="#frequency-distribution-analysis-snvs-1" id="toc-frequency-distribution-analysis-snvs-1" class="nav-link" data-scroll-target="#frequency-distribution-analysis-snvs-1">🔍 Frequency Distribution Analysis SNVs</a></li>
+  <li><a href="#accelerated-indel-evolution" id="toc-accelerated-indel-evolution" class="nav-link" data-scroll-target="#accelerated-indel-evolution">📊 Accelerated INDEL Evolution</a></li>
+  </ul></li>
+  <li><a href="#genome-wide-distribution-mapping-variants-across-the-cryptosporidium-genome" id="toc-genome-wide-distribution-mapping-variants-across-the-cryptosporidium-genome" class="nav-link" data-scroll-target="#genome-wide-distribution-mapping-variants-across-the-cryptosporidium-genome">Genome-Wide Distribution: Mapping Variants Across the Cryptosporidium Genome</a>
+  <ul class="collapse">
+  <li><a href="#taking-a-broader-perspective" id="toc-taking-a-broader-perspective" class="nav-link" data-scroll-target="#taking-a-broader-perspective">🔍 Taking a Broader Perspective</a></li>
+  <li><a href="#genomic-distribution-patterns" id="toc-genomic-distribution-patterns" class="nav-link" data-scroll-target="#genomic-distribution-patterns">🧬 Genomic Distribution Patterns</a></li>
+  <li><a href="#expanding-comparative-analysis" id="toc-expanding-comparative-analysis" class="nav-link" data-scroll-target="#expanding-comparative-analysis">🧬 Expanding Comparative Analysis</a></li>
+  <li><a href="#reproducibility-and-availability" id="toc-reproducibility-and-availability" class="nav-link" data-scroll-target="#reproducibility-and-availability">Reproducibility and Availability</a>
+  <ul class="collapse">
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies">Dependencies</a></li>
+  <li><a href="#interactive-analysis" id="toc-interactive-analysis" class="nav-link" data-scroll-target="#interactive-analysis">Interactive Analysis</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mtinti/cryptosporidium_host_adaptation/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.html.md"><i class="bi bi-file-code"></i>CommonMark</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Divergent Pathways: Tracking Cryptosporidium’s Host Adaptation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<div id="cell-2" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!cd .. &amp;&amp; pip install -e '.[dev]'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p><a href="https://doi.org/10.5281/zenodo.15126025"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.15126025.svg" class="img-fluid"></a> <a href="https://mybinder.org/v2/gh/mtinti/cryptosporidium_host_adaptation/HEAD?urlpath=%2Fdoc%2Ftree%2Fnbs%2Findex.ipynb"><img src="https://mybinder.org/badge_logo.svg" class="img-fluid"></a> <a href="https://mtinti.github.io/cryptosporidium_host_adaptation/"><img src="https://img.shields.io/badge/Delightful%20data-analysis-green?style=flat.png" class="img-fluid"></a> <a href="https://github.com/mtinti/cryptosporidium_host_adaptation"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&amp;logo=github&amp;logoColor=whitet.png" class="img-fluid"></a></p>
+</blockquote>
+<section id="the-origin-strain-m4" class="level2">
+<h2 class="anchored" data-anchor-id="the-origin-strain-m4">The Origin: Strain M4</h2>
+<p>Our journey begins with a single infected mouse (M4), harboring a Cryptosporidium strain that would become the progenitor of two distinct evolutionary paths. This initial host served as the critical branching point for our experimental design.</p>
+<p>From this single origin, the parasite’s story split into two parallel narratives:</p>
+<section id="the-murine-passage" class="level3">
+<h3 class="anchored" data-anchor-id="the-murine-passage">🐭 The Murine Passage 🐭</h3>
+<blockquote class="blockquote">
+<p>In this pathway, Cryptosporidium continued its journey through a series of mouse hosts, adapting to the murine environment through sequential passages:</p>
+</blockquote>
+<pre><code>M4 → M5 → M6 → M7</code></pre>
+<p>Each passage potentially allowed the parasite to optimize its survival and reproductive strategies within these genetically similar mammalian hosts.</p>
+</section>
+<section id="the-bovine-passage" class="level3">
+<h3 class="anchored" data-anchor-id="the-bovine-passage">🐄 The Bovine Passage 🐄</h3>
+<blockquote class="blockquote">
+<p>Simultaneously, we challenged the adaptability of the same initial strain by introducing it to an entirely different mammalian lineage - neonatal calves:</p>
+</blockquote>
+<pre><code>M4 → C1 → C2 → C3</code></pre>
+<p>This cross-species transmission forced the parasite to navigate a dramatically different physiological environment, potentially driving rapid adaptation.</p>
+</section>
+</section>
+<section id="specialized-variant-calling-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="specialized-variant-calling-strategy">🧬 Specialized Variant Calling Strategy 🧬</h2>
+<p>To fully capture the variability of the Cryptosporidium population in mouse M4 we implemented a customized variant calling pipeline:</p>
+<pre><code>┌────────────────────────────────┐
+│ FREEBAYES VARIANT CALLING      │
+├────────────────────────────────┤
+│ • Ploidy = 1                   │
+│ • --pooled-continuous option   │
+└────────────────────────────────┘</code></pre>
+<p>Why This Approach Matters?</p>
+<ol type="1">
+<li><p><strong>Beyond Binary Detection</strong>: &gt; Traditional presence/absence variant calling would have flattened the rich complexity of our samples, obscuring the very phenomenon we aimed to study. Tipycally variant call in Cryptosporidium is performed with ploidy 2. We belive this is suboptimal as it might filter out variant with more than 2 alleles.</p></li>
+<li><p><strong>Quantitative Insight</strong>: &gt; By focusing on allele frequencies rather than simple variant calls, will allow us to track subtle shifts in population genetics across hosts.</p></li>
+</ol>
+</section>
+<section id="variant-analysis-filtering-strategy" class="level1">
+<h1>Variant Analysis: Filtering Strategy</h1>
+<p>Our approach employed a strategic sequence of filtering steps, each addressing specific aspects of data quality:</p>
+<pre><code>┌─────────────────────────────────────┐
+│ THREE-TIER FILTERING STRATEGY       │
+├─────────────────────────────────────┤
+│ 1. Quality-based Filtering          │
+│ 2. Read Depth Optimization          │
+│ 3. Variant Type Selection           │
+└─────────────────────────────────────┘</code></pre>
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>filter_variants()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>======================================
+Starting Variant Filtering Process
+======================================
+Total variants before filtering: 15901
+Stage 1: QUAL filtering: 14087 Variants removed and 1814 variants left
+Stage 2: FORMAT/DP filtering, DP &gt;= 30 &amp; DP &lt;= 150: 355 Variants removed and 1459 variants left
+Stage 3: After keeping SNPs and indels: 203 Variants removed and 1256 variants left</code></pre>
+</div>
+</div>
+<section id="stage-1-quality-based-filtering" class="level3">
+<h3 class="anchored" data-anchor-id="stage-1-quality-based-filtering">Stage 1: Quality-Based Filtering</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminate low confidence variant calls</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> filter <span class="at">-e</span> <span class="st">'QUAL &lt; 30'</span> <span class="st">"</span><span class="va">$INPUT_VCF</span><span class="st">"</span> <span class="at">-o</span> <span class="st">"</span><span class="va">$QUAL_FILTERED_VCF</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Rationale</strong>: The QUAL score represents the statistical confidence in each variant call. By establishing a minimum threshold of 30: - We eliminated variants likely to be sequencing errors - Retained variants with a 99.9% probability of being genuine</p>
+</section>
+<section id="stage-2-read-depth-optimization" class="level3">
+<h3 class="anchored" data-anchor-id="stage-2-read-depth-optimization">Stage 2: Read Depth Optimization</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Balance between coverage requirements and anomalous amplification</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> view <span class="at">-i</span> <span class="st">'FMT/DP &gt;= 30 &amp; FMT/DP &lt;= 150'</span> <span class="st">"</span><span class="va">$QUAL_FILTERED_VCF</span><span class="st">"</span> <span class="at">-o</span> <span class="st">"</span><span class="va">$DP_FILTERED_VCF</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Rationale</strong>: Read depth optimization addressed two critical concerns: - <strong>Lower bound (DP ≥ 30)</strong>: Ensured sufficient read coverage - <strong>Upper bound (DP ≤ 150)</strong>: Protected against false positives from regions with anomalous read pileups which often indicate repetitive elements</p>
+</section>
+<section id="stage-3-variant-type-selection" class="level3">
+<h3 class="anchored" data-anchor-id="stage-3-variant-type-selection">Stage 3: Variant Type Selection</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Focus on  variation subset</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> view <span class="at">-v</span> snps,indels <span class="st">"</span><span class="va">$DP_FILTERED_VCF</span><span class="st">"</span> <span class="at">-o</span> <span class="st">"</span><span class="va">$SNP_FILTERED_VCF</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Rationale</strong>: This final step ensured our analysis focused exclusively on:</p>
+<ul>
+<li>Single nucleotide polymorphisms (SNPs)</li>
+<li>Small insertions and deletions (indels)</li>
+</ul>
+</section>
+</section>
+<section id="from-raw-variants-to-biological-insights-with-pandas" class="level1">
+<h1>From Raw Variants to Biological Insights 📊 with Pandas 🐼</h1>
+<p>Leveraging the robust capabilities of Python’s pandas library transformed our genetic data into a powerhouse of actionable insights.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>┌─────────────────────────────────────────────────────┐</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>│ DATA TRANSFORMATION PIPELINE                        │</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>├─────────────────────────────────────────────────────┤</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>│ <span class="fl">1.</span> Load filtered VCF <span class="bu">file</span>                           │</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>│ <span class="fl">2.</span> Remove ambiguous reference calls (REF <span class="op">=</span> <span class="st">'N'</span>)     │</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>│ <span class="fl">3.</span> Restructure <span class="cf">for</span> <span class="cf">for</span> computing frequency          │</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>└─────────────────────────────────────────────────────┘</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-13" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>vcf_file <span class="op">=</span> <span class="st">"../data/filtered_final.vcf"</span>  </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_vcf <span class="op">=</span> read_vcf(vcf_file)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'step 1: </span><span class="sc">{</span>df_vcf<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>df_vcf<span class="op">=</span>df_vcf[(df_vcf[<span class="st">'REF'</span>]<span class="op">!=</span><span class="st">'N'</span>)]</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'step 2: </span><span class="sc">{</span>df_vcf<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>step 1: (1256, 16)
+step 2: (945, 16)</code></pre>
+</div>
+</div>
+<div id="cell-14" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_vcf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">#CHROM</th>
+<th data-quarto-table-cell-role="th">POS</th>
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">REF</th>
+<th data-quarto-table-cell-role="th">ALT</th>
+<th data-quarto-table-cell-role="th">QUAL</th>
+<th data-quarto-table-cell-role="th">FILTER</th>
+<th data-quarto-table-cell-role="th">INFO</th>
+<th data-quarto-table-cell-role="th">FORMAT</th>
+<th data-quarto-table-cell-role="th">M7</th>
+<th data-quarto-table-cell-role="th">M5</th>
+<th data-quarto-table-cell-role="th">M4</th>
+<th data-quarto-table-cell-role="th">M6</th>
+<th data-quarto-table-cell-role="th">C3</th>
+<th data-quarto-table-cell-role="th">C2</th>
+<th data-quarto-table-cell-role="th">C1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>CM000429</td>
+<td>60867</td>
+<td>.</td>
+<td>TAAAAAAAAAAGATAT</td>
+<td>TAAAAAAAAAAAGATTT,TAAAAAAAAAAAGATAT,TAAAAAAAAA...</td>
+<td>10088.400</td>
+<td>PASS</td>
+<td>AB=0,0,0;ABP=0,0,0;AC=0,7,0;AF=0,1,0;AN=7;AO=1...</td>
+<td>GT:GQ:DP:AD:RO:QR:AO:QA:GL</td>
+<td>2:138:82:9,2,67,2:9:296:2,67,2:24,2218,68:-172...</td>
+<td>2:138:46:3,2,35,1:3:100:2,35,1:24,1116,34:-91....</td>
+<td>2:138:69:4,4,59,1:4:132:4,59,1:48,1980,34:-166...</td>
+<td>2:138:82:14,2,62,1:14:461:2,62,1:24,2092,26:-1...</td>
+<td>2:138:57:5,1,45,1:5:163:1,45,1:12,1492,34:-119...</td>
+<td>2:138:69:1,0,60,4:1:34:0,60,4:0,1966,136:-173....</td>
+<td>2:138:62:4,1,50,4:4:130:1,50,4:12,1678,128:-13...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>CM000429</td>
+<td>60889</td>
+<td>.</td>
+<td>ACCCCACT</td>
+<td>ACCCCCACT</td>
+<td>11705.800</td>
+<td>PASS</td>
+<td>AB=0;ABP=0;AC=7;AF=1;AN=7;AO=435;CIGAR=1M1I7M;...</td>
+<td>GT:GQ:DP:AD:RO:QR:AO:QA:GL</td>
+<td>1:137:90:9,81:9:295:81:2686:-215.126,0</td>
+<td>1:137:53:1,50:1:34:50:1596:-140.656,0</td>
+<td>1:137:70:2,66:2:68:66:2184:-190.372,0</td>
+<td>1:137:82:11,70:11:359:70:2241:-169.324,0</td>
+<td>1:137:45:5,40:5:169:40:1237:-96.064,0</td>
+<td>1:137:68:1,66:1:31:66:2174:-192.923,0</td>
+<td>1:137:69:4,62:4:126:62:2002:-168.787,0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>CM000429</td>
+<td>76625</td>
+<td>.</td>
+<td>A</td>
+<td>G</td>
+<td>265.872</td>
+<td>PASS</td>
+<td>AB=0;ABP=0;AC=1;AF=0.142857;AN=7;AO=248;CIGAR=...</td>
+<td>GT:GQ:DP:AD:RO:QR:AO:QA:GL</td>
+<td>0:131:104:76,28:76:2560:28:952:0,-144.672</td>
+<td>0:131:80:52,28:52:1738:28:930:0,-72.6994</td>
+<td>0:131:84:50,34:50:1596:34:1156:0,-39.5691</td>
+<td>0:131:89:61,28:61:2066:28:944:0,-100.949</td>
+<td>1:131:83:36,47:36:1216:47:1598:-34.3706,0</td>
+<td>0:131:112:78,34:78:2630:34:1126:0,-135.322</td>
+<td>0:131:112:63,49:63:2126:49:1658:0,-42.1062</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>CM000429</td>
+<td>82019</td>
+<td>.</td>
+<td>A</td>
+<td>T</td>
+<td>8192.190</td>
+<td>PASS</td>
+<td>AB=0;ABP=0;AC=7;AF=1;AN=7;AO=410;CIGAR=1X;DP=5...</td>
+<td>GT:GQ:DP:AD:RO:QR:AO:QA:GL</td>
+<td>1:160:98:9,89:9:306:89:2994:-241.841,0</td>
+<td>1:160:51:15,36:15:510:36:1186:-60.8115,0</td>
+<td>1:160:86:19,67:19:638:67:2240:-144.133,0</td>
+<td>1:160:90:15,75:15:488:75:2488:-179.952,0</td>
+<td>1:160:70:26,44:26:862:44:1472:-54.8869,0</td>
+<td>1:160:81:31,50:31:1046:50:1662:-55.4182,0</td>
+<td>1:160:71:22,49:22:748:49:1666:-82.5935,0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>CM000429</td>
+<td>82192</td>
+<td>.</td>
+<td>G</td>
+<td>A</td>
+<td>6765.840</td>
+<td>PASS</td>
+<td>AB=0;ABP=0;AC=6;AF=0.857143;AN=7;AO=398;CIGAR=...</td>
+<td>GT:GQ:DP:AD:RO:QR:AO:QA:GL</td>
+<td>1:134:104:11,93:11:374:93:3124:-247.418,0</td>
+<td>1:134:67:20,47:20:658:47:1598:-84.5836,0</td>
+<td>1:134:75:25,50:25:842:50:1692:-76.4771,0</td>
+<td>1:134:102:26,76:26:846:76:2568:-154.943,0</td>
+<td>0:0:53:28,25:28:944:25:850:0,-8.45503</td>
+<td>1:134:92:35,57:35:1190:57:1938:-67.2984,0</td>
+<td>1:134:83:33,50:33:1084:50:1692:-54.7114,0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="from-vcf-fields-to-counting-reads-for-each-allele" class="level2">
+<h2 class="anchored" data-anchor-id="from-vcf-fields-to-counting-reads-for-each-allele">📝 From VCF Fields to counting reads for each allele</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>┌─────────────────────────────────────────────────────────┐</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>│ ALLELE FREQUENCY CALCULATION COMPONENTS                 │</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>├─────────────────────────────────────────────────────────┤</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>│ RO: Reference Allele Observation count                  │</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>│ AO: Alternate Allele Observation count                  │</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>│ DP: Total Read Depth at position                        │</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>│                                                         │</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>│ Allele Frequency <span class="op">=</span> AO <span class="op">/</span> DP                              │</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>└─────────────────────────────────────────────────────────┘</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-16" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_allele_counts <span class="op">=</span> expand_multiallelic_variants(df_vcf)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df_allele_counts.to_csv(<span class="st">"../data/allele_counts_expanded.tsv"</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Extracted and expanded allele counts saved to allele_counts_expanded.tsv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>✅ Extracted and expanded allele counts saved to allele_counts_expanded.tsv</code></pre>
+</div>
+</div>
+<div id="cell-17" class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df_allele_counts.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">#CHROM</th>
+<th data-quarto-table-cell-role="th">POS</th>
+<th data-quarto-table-cell-role="th">REF</th>
+<th data-quarto-table-cell-role="th">ALT</th>
+<th data-quarto-table-cell-role="th">INFO_TYPE</th>
+<th data-quarto-table-cell-role="th">RO_M7</th>
+<th data-quarto-table-cell-role="th">DP_M7</th>
+<th data-quarto-table-cell-role="th">AO_M7</th>
+<th data-quarto-table-cell-role="th">RO_M5</th>
+<th data-quarto-table-cell-role="th">DP_M5</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">AO_M6</th>
+<th data-quarto-table-cell-role="th">RO_C3</th>
+<th data-quarto-table-cell-role="th">DP_C3</th>
+<th data-quarto-table-cell-role="th">AO_C3</th>
+<th data-quarto-table-cell-role="th">RO_C2</th>
+<th data-quarto-table-cell-role="th">DP_C2</th>
+<th data-quarto-table-cell-role="th">AO_C2</th>
+<th data-quarto-table-cell-role="th">RO_C1</th>
+<th data-quarto-table-cell-role="th">DP_C1</th>
+<th data-quarto-table-cell-role="th">AO_C1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>CM000429</td>
+<td>60867</td>
+<td>TAAAAAAAAAAGATAT</td>
+<td>TAAAAAAAAAAAGATTT</td>
+<td>complex</td>
+<td>9</td>
+<td>82</td>
+<td>2</td>
+<td>3</td>
+<td>46</td>
+<td>...</td>
+<td>2</td>
+<td>5</td>
+<td>57</td>
+<td>1</td>
+<td>1</td>
+<td>69</td>
+<td>0</td>
+<td>4</td>
+<td>62</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>CM000429</td>
+<td>60867</td>
+<td>TAAAAAAAAAAGATAT</td>
+<td>TAAAAAAAAAAAGATAT</td>
+<td>ins</td>
+<td>9</td>
+<td>82</td>
+<td>67</td>
+<td>3</td>
+<td>46</td>
+<td>...</td>
+<td>62</td>
+<td>5</td>
+<td>57</td>
+<td>45</td>
+<td>1</td>
+<td>69</td>
+<td>60</td>
+<td>4</td>
+<td>62</td>
+<td>50</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>CM000429</td>
+<td>60867</td>
+<td>TAAAAAAAAAAGATAT</td>
+<td>TAAAAAAAAAAAAGATAT</td>
+<td>ins</td>
+<td>9</td>
+<td>82</td>
+<td>2</td>
+<td>3</td>
+<td>46</td>
+<td>...</td>
+<td>1</td>
+<td>5</td>
+<td>57</td>
+<td>1</td>
+<td>1</td>
+<td>69</td>
+<td>4</td>
+<td>4</td>
+<td>62</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>CM000429</td>
+<td>60889</td>
+<td>ACCCCACT</td>
+<td>ACCCCCACT</td>
+<td>ins</td>
+<td>9</td>
+<td>90</td>
+<td>81</td>
+<td>1</td>
+<td>53</td>
+<td>...</td>
+<td>70</td>
+<td>5</td>
+<td>45</td>
+<td>40</td>
+<td>1</td>
+<td>68</td>
+<td>66</td>
+<td>4</td>
+<td>69</td>
+<td>62</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>CM000429</td>
+<td>76625</td>
+<td>A</td>
+<td>G</td>
+<td>snp</td>
+<td>76</td>
+<td>104</td>
+<td>28</td>
+<td>52</td>
+<td>80</td>
+<td>...</td>
+<td>28</td>
+<td>36</td>
+<td>83</td>
+<td>47</td>
+<td>78</td>
+<td>112</td>
+<td>34</td>
+<td>63</td>
+<td>112</td>
+<td>49</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 26 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="keep-variants-where-one-of-the-call-as-at-least-5-supporting-reads" class="level2">
+<h2 class="anchored" data-anchor-id="keep-variants-where-one-of-the-call-as-at-least-5-supporting-reads">📝 Keep variants where one of the call as at least 5 supporting reads</h2>
+<blockquote class="blockquote">
+<p>shell we also remove complex? yes for now</p>
+</blockquote>
+<div id="cell-19" class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_allele_counts.shape)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df_allele_counts <span class="op">=</span> df_allele_counts[</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df_allele_counts[[n <span class="cf">for</span> n <span class="kw">in</span> df_allele_counts.columns <span class="cf">if</span> n.startswith(<span class="st">'AO'</span>)]].<span class="bu">max</span>(axis<span class="op">=</span><span class="dv">1</span>)<span class="op">&gt;=</span><span class="dv">5</span>]</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>df_allele_counts <span class="op">=</span> df_allele_counts[df_allele_counts[<span class="st">'INFO_TYPE'</span>]<span class="op">!=</span><span class="st">'complex'</span>]</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_allele_counts.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(1937, 26)
+(1121, 26)</code></pre>
+</div>
+</div>
+<div id="cell-20" class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_af <span class="op">=</span> compute_frequencies(df_allele_counts)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df_af.to_csv(<span class="st">"../data/allele_frequencies.tsv"</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Allele frequencies saved to allele_frequencies.tsv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>✅ Allele frequencies saved to allele_frequencies.tsv</code></pre>
+</div>
+</div>
+<div id="cell-21" class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_af.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">#CHROM</th>
+<th data-quarto-table-cell-role="th">POS</th>
+<th data-quarto-table-cell-role="th">REF</th>
+<th data-quarto-table-cell-role="th">ALT</th>
+<th data-quarto-table-cell-role="th">AF_M7</th>
+<th data-quarto-table-cell-role="th">AF_M5</th>
+<th data-quarto-table-cell-role="th">AF_M4</th>
+<th data-quarto-table-cell-role="th">AF_M6</th>
+<th data-quarto-table-cell-role="th">AF_C3</th>
+<th data-quarto-table-cell-role="th">AF_C2</th>
+<th data-quarto-table-cell-role="th">AF_C1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>CM000429</td>
+<td>60867</td>
+<td>TAAAAAAAAAAGATAT</td>
+<td>TAAAAAAAAAAAGATAT</td>
+<td>0.817073</td>
+<td>0.760870</td>
+<td>0.855072</td>
+<td>0.756098</td>
+<td>0.789474</td>
+<td>0.869565</td>
+<td>0.806452</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>CM000429</td>
+<td>60889</td>
+<td>ACCCCACT</td>
+<td>ACCCCCACT</td>
+<td>0.900000</td>
+<td>0.943396</td>
+<td>0.942857</td>
+<td>0.853659</td>
+<td>0.888889</td>
+<td>0.970588</td>
+<td>0.898551</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>CM000429</td>
+<td>76625</td>
+<td>A</td>
+<td>G</td>
+<td>0.269231</td>
+<td>0.350000</td>
+<td>0.404762</td>
+<td>0.314607</td>
+<td>0.566265</td>
+<td>0.303571</td>
+<td>0.437500</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>CM000429</td>
+<td>82019</td>
+<td>A</td>
+<td>T</td>
+<td>0.908163</td>
+<td>0.705882</td>
+<td>0.779070</td>
+<td>0.833333</td>
+<td>0.628571</td>
+<td>0.617284</td>
+<td>0.690141</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>CM000429</td>
+<td>82192</td>
+<td>G</td>
+<td>A</td>
+<td>0.894231</td>
+<td>0.701493</td>
+<td>0.666667</td>
+<td>0.745098</td>
+<td>0.471698</td>
+<td>0.619565</td>
+<td>0.602410</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="frequency-distribution-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="frequency-distribution-analysis">🔍 Frequency Distribution Analysis</h2>
+<blockquote class="blockquote">
+<p>With our extracted allele frequencies in hand, we could now explore how these frequencies were distributed across our samples</p>
+</blockquote>
+<div id="cell-23" class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">4</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">'../data/allele_frequencies.tsv'</span>,sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> pd.Series(data.iloc[:,<span class="dv">4</span>:].values.flatten())</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>tmp.name<span class="op">=</span><span class="st">'All Samples'</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>tmp.plot(kind<span class="op">=</span><span class="st">'hist'</span>,histtype<span class="op">=</span><span class="st">'step'</span>,bins<span class="op">=</span><span class="dv">50</span>,ax<span class="op">=</span>ax,linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Alternate Allele Frequency'</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Counts'</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>mod_hist_legend(ax)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>clean_axes(ax)</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Expected in a population</strong>: Frequencies clustered at extremes (0 or 1)</li>
+</ul>
+<blockquote class="blockquote">
+<p><em>“with also allele frequencies deviating from the expected 0/1 pattern”</em></p>
+</blockquote>
+</section>
+</section>
+<section id="focusing-on-single-nucleotide-variants" class="level1">
+<h1>🔬 Focusing on Single Nucleotide Variants</h1>
+<blockquote class="blockquote">
+<p>To gain deeper insight into the evolutionary dynamics of our Cryptosporidium populations, we narrowed our analysis to focus specifically on Single Nucleotide Variants (SNVs).</p>
+</blockquote>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>┌─────────────────────────────────────────────────────────┐</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>│ SNV CLUSTERING WORKFLOW                                 │</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>├─────────────────────────────────────────────────────────┤</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>│ <span class="fl">1.</span> Filter dataset to retain only SNVs                   │    </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>│ <span class="fl">2.</span> Normalize frequencies (divide by <span class="bu">max</span> frequency)      │</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>│ <span class="fl">4.</span> Include only variants <span class="cf">with</span> <span class="op">&gt;</span><span class="dv">30</span><span class="op">%</span> frequency            │</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>│    difference between <span class="bu">any</span> two samples                   │</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>│ <span class="fl">5.</span> Perform hierarchical clustering                      │</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>│ <span class="fl">6.</span> Visualize dendrogram                                 │</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>└─────────────────────────────────────────────────────────┘</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-26" class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">'../data/allele_frequencies.tsv'</span>,sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'step 1 starting variants: </span><span class="sc">{</span>data<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>data[(data[<span class="st">'ALT'</span>].<span class="bu">str</span>.<span class="bu">len</span>()<span class="op">==</span><span class="dv">1</span>)]</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'step 2 only snv variants: </span><span class="sc">{</span>data<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>clustering_data <span class="op">=</span> data[[<span class="st">'#CHROM'</span>,<span class="st">'POS'</span>,<span class="st">'AF_M7'</span>, <span class="st">'AF_M5'</span>, <span class="st">'AF_M6'</span>, <span class="st">'AF_M4'</span>,<span class="st">'AF_C3'</span>, <span class="st">'AF_C2'</span>, <span class="st">'AF_C1'</span>]]</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>clustering_data<span class="op">=</span>clustering_data.set_index([<span class="st">'#CHROM'</span>,<span class="st">'POS'</span>])</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>clustering_data <span class="op">=</span> clustering_data.divide(clustering_data.<span class="bu">max</span>(axis<span class="op">=</span><span class="dv">1</span>),axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>clustering_max<span class="op">=</span>clustering_data.<span class="bu">max</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>clustering_min<span class="op">=</span>clustering_data.<span class="bu">min</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>clustering_data <span class="op">=</span> clustering_data[(clustering_max<span class="op">-</span>clustering_min)<span class="op">&gt;</span><span class="fl">0.3</span>]</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'selected variants:'</span>, clustering_data.shape)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>sns.clustermap(clustering_data,cmap<span class="op">=</span><span class="st">'Blues'</span>,figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">6</span>))</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../data/Allele_Frequency_SNVs.svg'</span>)</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../data/Allele_Frequency_SNVs.png'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>step 1 starting variants: (1121, 11)
+step 2 only snv variants: (511, 11)
+selected variants: (129, 7)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-14-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="variant-observations" class="level2">
+<h2 class="anchored" data-anchor-id="variant-observations">🧬 Variant Observations</h2>
+<ol type="1">
+<li><strong>No novel variant identified</strong>: &gt; “Using our filtering strategy we could not detect SNV unique to one sample, but only frequency variations of the initial variant pool.” This observation has significant implications for outbreak investigations. Samples that are closely linked in a transmission chain may be more accurately characterized by analyzing the relative frequencies of variants rather than simply detecting their presence or absence under a diploid assumption.</li>
+</ol>
+</section>
+<section id="distinct-evolutionary-trajectories-revealed" class="level2">
+<h2 class="anchored" data-anchor-id="distinct-evolutionary-trajectories-revealed">🧬 Distinct Evolutionary Trajectories Revealed</h2>
+<p>The hierarchical clustering dendrogram revealed several patterns:</p>
+<ol type="1">
+<li><p><strong>Clear Host-Species Separation</strong>: &gt; <em>“The clustering segregated bovine and murine samples, suggesting host specific pressure on the Cryptosporidium population.”</em></p></li>
+<li><p><strong>Temporal Evolution in Murine Hosts</strong>: &gt; <em>“The murine samples displayed a clear temporal progression, with M6 and M7 clustering distinctly from the earlier passages (M4-M5).”</em></p></li>
+<li><p><strong>Similarity Between Early Murine and Bovine Samples</strong>: &gt; <em>“The three bovine samples (C1-C3) showed greater similarity to the early murine passages (M4-M5) than to the later murine passages (M6-M7). Bovine adaptation might be slower to kick in.”</em></p></li>
+<li><p><strong>Caveats</strong>: &gt; <em>“We might be overinterpret results, the variation in frequency might be due to fluctuations/sampling in the population used for the M6 infection”</em></p></li>
+</ol>
+</section>
+<section id="determining-optimal-number-of-snv-clusters" class="level2">
+<h2 class="anchored" data-anchor-id="determining-optimal-number-of-snv-clusters">Determining Optimal Number of SNV Clusters</h2>
+<blockquote class="blockquote">
+<p>Upon visual inspection of the hierarchical clustering dendrogram, we observed what appeared to be 3-4 distinct clusters of variants. To validate this initial observation and determine the optimal number of clusters more objectively, we employed two widely-used cluster validation techniques: the silhouette method and elbow analysis.</p>
+</blockquote>
+<div id="cell-30" class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fig, ax, inertia_values, silhouette_values <span class="op">=</span> kmeans_cluster_analysis(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    clustering_data,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    cluster_sizes<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>],</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">5</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>clean_axes(ax)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="validation-results-support-three-main-clusters" class="level2">
+<h2 class="anchored" data-anchor-id="validation-results-support-three-main-clusters">Validation Results Support Three Main Clusters</h2>
+<blockquote class="blockquote">
+<p>Our quantitative cluster validation analyses strongly confirm our initial visual assessment. The Silhouette analysis reveals comparable values for cluster numbers between 2 and 4, with scores declining steadily beyond 5 clusters. Meanwhile, the helbow plot displays a clear inflection point at 3 clusters. Based on these complementary validation techniques, we can confidently determine that three represents the optimal number of clusters for our dataset.</p>
+</blockquote>
+<div id="cell-32" class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>, n_init<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>kmeans.fit(clustering_data[[<span class="st">'AF_M7'</span>,<span class="st">'AF_M6'</span>,<span class="st">'AF_M5'</span>,<span class="st">'AF_M4'</span>,<span class="st">'AF_C1'</span>,<span class="st">'AF_C2'</span>,<span class="st">'AF_C3'</span>]])</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>clustering_data[<span class="st">'cluster'</span>]<span class="op">=</span>kmeans.labels_</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> clustering_data.cluster.unique():</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    cluster_data <span class="op">=</span> clustering_data[clustering_data[<span class="st">'cluster'</span>]<span class="op">==</span>c][[<span class="st">'AF_M7'</span>,<span class="st">'AF_M6'</span>,<span class="st">'AF_M5'</span>,<span class="st">'AF_M4'</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'AF_C1'</span>,<span class="st">'AF_C2'</span>,<span class="st">'AF_C3'</span>]]</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the mean</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    means <span class="op">=</span> cluster_data.mean()</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    means.plot(ax<span class="op">=</span>ax, label<span class="op">=</span><span class="ss">f'Cluster: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">'</span>, linewidth<span class="op">=</span><span class="fl">2.0</span>)</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add shaded area for std</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>    upper <span class="op">=</span> means <span class="op">+</span> cluster_data.std()</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    lower <span class="op">=</span> means <span class="op">-</span> cluster_data.std()</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(<span class="bu">range</span>(<span class="bu">len</span>(means)), lower, upper, alpha<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'center left'</span>, bbox_to_anchor<span class="op">=</span>(<span class="dv">1</span>, <span class="fl">0.5</span>))</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'clean_axes'</span> <span class="kw">in</span> <span class="bu">globals</span>():</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>    clean_axes(ax)</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Cluster Mean Values'</span>)</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">7</span>), [<span class="st">'AF_M7'</span>,<span class="st">'AF_M6'</span>,<span class="st">'AF_M5'</span>,<span class="st">'AF_M4'</span>,<span class="st">'AF_C1'</span>,<span class="st">'AF_C2'</span>,<span class="st">'AF_C3'</span>], rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="evolutionary-trajectories" class="level2">
+<h2 class="anchored" data-anchor-id="evolutionary-trajectories">Evolutionary trajectories :</h2>
+<blockquote class="blockquote">
+<p>When plotting the mean values of variants within each cluster, we observe three distinct evolutionary trajectories: - Dramatic Increase Cluster: Variants that show a substantial frequency increase in later mouse passages (M6 and M7) - Moderate Increase Cluster: Variants with a modest frequency increase in M6 and M7 - Decrease Cluster: Variants that exhibit declining frequency in M6 and M7</p>
+</blockquote>
+<p>Notably, across all three clusters, the variant frequencies in early mouse passages (M4 and M5) remain similar to those observed in all bovine passages (C1, C2, and C3). This pattern suggests that significant evolutionary divergence between host lineages begins after the second mouse passage, while the bovine lineage maintains greater genetic similarity to the original population.</p>
+</section>
+</section>
+<section id="high-impact-variants-tracking-protein-altering-mutations" class="level1">
+<h1>High Impact Variants: Tracking Protein-Altering Mutations</h1>
+<section id="decoding-functional-consequences" class="level2">
+<h2 class="anchored" data-anchor-id="decoding-functional-consequences">🧬 Decoding Functional Consequences</h2>
+<blockquote class="blockquote">
+<p>With our variants annotated using SnpEff, we can now delve deeper into their functional implications—moving beyond mere genomic positions to understand how these mutations potentially reshape Cryptosporidium biology.</p>
+</blockquote>
+<div id="cell-35" class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df_vcf <span class="op">=</span> read_vcf( <span class="st">"../data/filtered_final.vcf"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df_vcf <span class="op">=</span> df_vcf.set_index([<span class="st">'#CHROM'</span>,<span class="st">'POS'</span>])</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>df_vcf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">REF</th>
+<th data-quarto-table-cell-role="th">ALT</th>
+<th data-quarto-table-cell-role="th">QUAL</th>
+<th data-quarto-table-cell-role="th">FILTER</th>
+<th data-quarto-table-cell-role="th">INFO</th>
+<th data-quarto-table-cell-role="th">FORMAT</th>
+<th data-quarto-table-cell-role="th">M7</th>
+<th data-quarto-table-cell-role="th">M5</th>
+<th data-quarto-table-cell-role="th">M4</th>
+<th data-quarto-table-cell-role="th">M6</th>
+<th data-quarto-table-cell-role="th">C3</th>
+<th data-quarto-table-cell-role="th">C2</th>
+<th data-quarto-table-cell-role="th">C1</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">#CHROM</th>
+<th data-quarto-table-cell-role="th">POS</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="5" data-quarto-table-cell-role="th" data-valign="top">CM000429</td>
+<td data-quarto-table-cell-role="th">60867</td>
+<td>.</td>
+<td>TAAAAAAAAAAGATAT</td>
+<td>TAAAAAAAAAAAGATTT,TAAAAAAAAAAAGATAT,TAAAAAAAAA...</td>
+<td>10088.400</td>
+<td>PASS</td>
+<td>AB=0,0,0;ABP=0,0,0;AC=0,7,0;AF=0,1,0;AN=7;AO=1...</td>
+<td>GT:GQ:DP:AD:RO:QR:AO:QA:GL</td>
+<td>2:138:82:9,2,67,2:9:296:2,67,2:24,2218,68:-172...</td>
+<td>2:138:46:3,2,35,1:3:100:2,35,1:24,1116,34:-91....</td>
+<td>2:138:69:4,4,59,1:4:132:4,59,1:48,1980,34:-166...</td>
+<td>2:138:82:14,2,62,1:14:461:2,62,1:24,2092,26:-1...</td>
+<td>2:138:57:5,1,45,1:5:163:1,45,1:12,1492,34:-119...</td>
+<td>2:138:69:1,0,60,4:1:34:0,60,4:0,1966,136:-173....</td>
+<td>2:138:62:4,1,50,4:4:130:1,50,4:12,1678,128:-13...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">60889</td>
+<td>.</td>
+<td>ACCCCACT</td>
+<td>ACCCCCACT</td>
+<td>11705.800</td>
+<td>PASS</td>
+<td>AB=0;ABP=0;AC=7;AF=1;AN=7;AO=435;CIGAR=1M1I7M;...</td>
+<td>GT:GQ:DP:AD:RO:QR:AO:QA:GL</td>
+<td>1:137:90:9,81:9:295:81:2686:-215.126,0</td>
+<td>1:137:53:1,50:1:34:50:1596:-140.656,0</td>
+<td>1:137:70:2,66:2:68:66:2184:-190.372,0</td>
+<td>1:137:82:11,70:11:359:70:2241:-169.324,0</td>
+<td>1:137:45:5,40:5:169:40:1237:-96.064,0</td>
+<td>1:137:68:1,66:1:31:66:2174:-192.923,0</td>
+<td>1:137:69:4,62:4:126:62:2002:-168.787,0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">76625</td>
+<td>.</td>
+<td>A</td>
+<td>G</td>
+<td>265.872</td>
+<td>PASS</td>
+<td>AB=0;ABP=0;AC=1;AF=0.142857;AN=7;AO=248;CIGAR=...</td>
+<td>GT:GQ:DP:AD:RO:QR:AO:QA:GL</td>
+<td>0:131:104:76,28:76:2560:28:952:0,-144.672</td>
+<td>0:131:80:52,28:52:1738:28:930:0,-72.6994</td>
+<td>0:131:84:50,34:50:1596:34:1156:0,-39.5691</td>
+<td>0:131:89:61,28:61:2066:28:944:0,-100.949</td>
+<td>1:131:83:36,47:36:1216:47:1598:-34.3706,0</td>
+<td>0:131:112:78,34:78:2630:34:1126:0,-135.322</td>
+<td>0:131:112:63,49:63:2126:49:1658:0,-42.1062</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">82019</td>
+<td>.</td>
+<td>A</td>
+<td>T</td>
+<td>8192.190</td>
+<td>PASS</td>
+<td>AB=0;ABP=0;AC=7;AF=1;AN=7;AO=410;CIGAR=1X;DP=5...</td>
+<td>GT:GQ:DP:AD:RO:QR:AO:QA:GL</td>
+<td>1:160:98:9,89:9:306:89:2994:-241.841,0</td>
+<td>1:160:51:15,36:15:510:36:1186:-60.8115,0</td>
+<td>1:160:86:19,67:19:638:67:2240:-144.133,0</td>
+<td>1:160:90:15,75:15:488:75:2488:-179.952,0</td>
+<td>1:160:70:26,44:26:862:44:1472:-54.8869,0</td>
+<td>1:160:81:31,50:31:1046:50:1662:-55.4182,0</td>
+<td>1:160:71:22,49:22:748:49:1666:-82.5935,0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">82192</td>
+<td>.</td>
+<td>G</td>
+<td>A</td>
+<td>6765.840</td>
+<td>PASS</td>
+<td>AB=0;ABP=0;AC=6;AF=0.857143;AN=7;AO=398;CIGAR=...</td>
+<td>GT:GQ:DP:AD:RO:QR:AO:QA:GL</td>
+<td>1:134:104:11,93:11:374:93:3124:-247.418,0</td>
+<td>1:134:67:20,47:20:658:47:1598:-84.5836,0</td>
+<td>1:134:75:25,50:25:842:50:1692:-76.4771,0</td>
+<td>1:134:102:26,76:26:846:76:2568:-154.943,0</td>
+<td>0:0:53:28,25:28:944:25:850:0,-8.45503</td>
+<td>1:134:92:35,57:35:1190:57:1938:-67.2984,0</td>
+<td>1:134:83:33,50:33:1084:50:1692:-54.7114,0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>We now add the vcf INFO to the dataset and extract variant effect</p>
+</blockquote>
+<div id="cell-37" class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#port INFO</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>clustering_data <span class="op">=</span> clustering_data.join(df_vcf[[<span class="st">'INFO'</span>]])</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">#deconstruct INFO</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>clustering_data <span class="op">=</span> add_ann_info_to_df(clustering_data)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> clustering_data[<span class="st">'INFO'</span>]</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>clustering_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">AF_M7</th>
+<th data-quarto-table-cell-role="th">AF_M5</th>
+<th data-quarto-table-cell-role="th">AF_M6</th>
+<th data-quarto-table-cell-role="th">AF_M4</th>
+<th data-quarto-table-cell-role="th">AF_C3</th>
+<th data-quarto-table-cell-role="th">AF_C2</th>
+<th data-quarto-table-cell-role="th">AF_C1</th>
+<th data-quarto-table-cell-role="th">cluster</th>
+<th data-quarto-table-cell-role="th">variant_type</th>
+<th data-quarto-table-cell-role="th">impact</th>
+<th data-quarto-table-cell-role="th">gene_id</th>
+<th data-quarto-table-cell-role="th">allele</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">#CHROM</th>
+<th data-quarto-table-cell-role="th">POS</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="5" data-quarto-table-cell-role="th" data-valign="top">CM000429</td>
+<td data-quarto-table-cell-role="th">76625</td>
+<td>0.475450</td>
+<td>0.618085</td>
+<td>0.555582</td>
+<td>0.714792</td>
+<td>1.000000</td>
+<td>0.536094</td>
+<td>0.772606</td>
+<td>0</td>
+<td>synonymous_variant</td>
+<td>LOW</td>
+<td>cgd1_340</td>
+<td>G</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">82019</td>
+<td>1.000000</td>
+<td>0.777264</td>
+<td>0.917603</td>
+<td>0.857852</td>
+<td>0.692135</td>
+<td>0.679706</td>
+<td>0.759930</td>
+<td>1</td>
+<td>synonymous_variant</td>
+<td>LOW</td>
+<td>cgd1_360</td>
+<td>T</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">82192</td>
+<td>1.000000</td>
+<td>0.784465</td>
+<td>0.833228</td>
+<td>0.745520</td>
+<td>0.527490</td>
+<td>0.692847</td>
+<td>0.673662</td>
+<td>1</td>
+<td>missense_variant</td>
+<td>MODERATE</td>
+<td>cgd1_360</td>
+<td>A</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">702600</td>
+<td>0.725550</td>
+<td>0.837162</td>
+<td>0.681081</td>
+<td>0.922297</td>
+<td>0.901888</td>
+<td>0.861137</td>
+<td>1.000000</td>
+<td>0</td>
+<td>missense_variant</td>
+<td>MODERATE</td>
+<td>cgd1_3190</td>
+<td>A</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">702605</td>
+<td>0.722545</td>
+<td>0.892645</td>
+<td>0.694440</td>
+<td>0.953358</td>
+<td>1.000000</td>
+<td>0.861506</td>
+<td>0.979373</td>
+<td>0</td>
+<td>synonymous_variant</td>
+<td>LOW</td>
+<td>cgd1_3190</td>
+<td>A</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="variant-type-distribution-and-high-impact-mutations" class="level2">
+<h2 class="anchored" data-anchor-id="variant-type-distribution-and-high-impact-mutations">Variant Type Distribution and High-Impact Mutations</h2>
+<blockquote class="blockquote">
+<p>After extracting SnpEff annotations, we analyzed the distribution of variant types across impact categories and clusters</p>
+</blockquote>
+<div id="cell-39" class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>clustering_data[clustering_data[<span class="st">'impact'</span>].isin(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'LOW'</span>,<span class="st">'MODERATE'</span>,<span class="st">'HIGH'</span>])].groupby([<span class="st">'impact'</span>,<span class="st">'cluster'</span>]).size()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>impact    cluster
+HIGH      0           1
+          1           1
+LOW       0           9
+          1          19
+          2           6
+MODERATE  0          23
+          1          24
+          2           5
+dtype: int64</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Intriguingly, we identified only two HIGH impact SNV variants in our dataset, lets have a look 🔍</p>
+</blockquote>
+<div id="cell-41" class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>clustering_data[clustering_data[<span class="st">'impact'</span>]<span class="op">==</span><span class="st">'HIGH'</span>].iloc[:,<span class="dv">7</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cluster</th>
+<th data-quarto-table-cell-role="th">variant_type</th>
+<th data-quarto-table-cell-role="th">impact</th>
+<th data-quarto-table-cell-role="th">gene_id</th>
+<th data-quarto-table-cell-role="th">allele</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">#CHROM</th>
+<th data-quarto-table-cell-role="th">POS</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">CM000435</td>
+<td data-quarto-table-cell-role="th">620700</td>
+<td>1</td>
+<td>stop_gained</td>
+<td>HIGH</td>
+<td>cgd7_2620</td>
+<td>A</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">CM000436</td>
+<td data-quarto-table-cell-role="th">170586</td>
+<td>0</td>
+<td>stop_lost&amp;splice_region_variant</td>
+<td>HIGH</td>
+<td>cgd8_670</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>we created trajectory visualizations that track their frequencies across sequential passages in both lineages.</p>
+</blockquote>
+<div id="cell-43" class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>fig,axes <span class="op">=</span> plt.subplots(figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">4</span>), ncols<span class="op">=</span><span class="dv">2</span>,sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>clustering_data[clustering_data[<span class="st">'impact'</span>]<span class="op">==</span><span class="st">'HIGH'</span>][[<span class="st">'AF_M4'</span>,<span class="st">'AF_M5'</span>,<span class="st">'AF_M6'</span>,<span class="st">'AF_M7'</span>]].T.plot(ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>clean_axes(axes[<span class="dv">0</span>]).set_title(<span class="st">'MOUSE'</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>clustering_data[clustering_data[<span class="st">'impact'</span>]<span class="op">==</span><span class="st">'HIGH'</span>][[<span class="st">'AF_M4'</span>,<span class="st">'AF_C1'</span>,<span class="st">'AF_C2'</span>,<span class="st">'AF_C3'</span>]].T.plot(ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>clean_axes(axes[<span class="dv">1</span>]).set_title(<span class="st">'COW'</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="fl">1.1</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-21-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="key-variant-trajectories" class="level3">
+<h3 class="anchored" data-anchor-id="key-variant-trajectories">Key Variant Trajectories</h3>
+<p>One variant located at <strong>CM000436:170586</strong> (in gene <strong>cgd8_670</strong>) displays a pattern of negative selection in both host lineages:</p>
+<ul>
+<li>In mouse passages: Frequency steadily decreases from M4 to M7</li>
+<li>In cow passages: Similar downward trend more evident at C3</li>
+</ul>
+<p>The variant at <strong>CM000435:620700</strong> (in gene <strong>cgd7_2620</strong>) shows a host-dependent pattern:</p>
+<ul>
+<li>In mouse passages: Frequency increases</li>
+<li>In cow passages: Frequency remains relatively stable</li>
+</ul>
+<div id="cell-45" class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#clustering_data[clustering_data['impact']=='MODERATE'].groupby('gene_id').size().sort_values().tail(5)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="future-directions-correlating-cluster-patterns-with-go-annotations" class="level2">
+<h2 class="anchored" data-anchor-id="future-directions-correlating-cluster-patterns-with-go-annotations">Future Directions: Correlating Cluster Patterns with GO Annotations</h2>
+<blockquote class="blockquote">
+<p>Having established three distinct clusters of SNV frequency patterns that correlate with host adaptation trajectories, we plan to extend this analysis by integrating Gene Ontology (GO) annotations. This functional enrichment approach will allow us to determine whether these evolutionary clusters represent coordinated changes in specific biological pathways or molecular functions.</p>
+</blockquote>
+</section>
+<section id="frequency-distribution-analysis-snvs" class="level2">
+<h2 class="anchored" data-anchor-id="frequency-distribution-analysis-snvs">🔍 Frequency Distribution Analysis SNVs</h2>
+<div id="cell-49" class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">4</span>))</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> pd.Series(data.iloc[:,<span class="dv">4</span>:].values.flatten())</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>tmp.name<span class="op">=</span><span class="st">'SNVs'</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>tmp.plot(kind<span class="op">=</span><span class="st">'hist'</span>,histtype<span class="op">=</span><span class="st">'step'</span>,bins<span class="op">=</span><span class="dv">50</span>,ax<span class="op">=</span>ax,linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Alternate Allele Frequency'</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Counts'</span>)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>mod_hist_legend(ax)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>clean_axes(ax)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="from-snvs-to-indels-exploring-different-variant-dynamics" class="level2">
+<h2 class="anchored" data-anchor-id="from-snvs-to-indels-exploring-different-variant-dynamics">From SNVs to INDELs: Exploring Different Variant Dynamics</h2>
+<blockquote class="blockquote">
+<p>While our overall frequency analysis revealed peaks near 0 and 1 across all variants, SNVs are predominantly clustered at higher frequencies (&gt;0.4). This observation raises an important question: what’s happening with INDELs to create this contrast? To understand this difference, we next focused specifically on INDEL frequency distributions, which might reveal distinct evolutionary dynamics for these structural variants compared to point mutations.</p>
+</blockquote>
+</section>
+</section>
+<section id="focusing-on-indels" class="level1">
+<h1>🔬 Focusing on INDELS</h1>
+<blockquote class="blockquote">
+<p>Having established clear evolutionary patterns through SNV analysis, we extended our investigation to insertions and deletions (INDELs) using the same strategy</p>
+</blockquote>
+<div id="cell-53" class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">'../data/allele_frequencies.tsv'</span>,sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'step 1 starting variants: </span><span class="sc">{</span>data<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>data[(data[<span class="st">'ALT'</span>].<span class="bu">str</span>.<span class="bu">len</span>()<span class="op">!=</span><span class="dv">1</span>)]</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'step 2 only snv variants: </span><span class="sc">{</span>data<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>clustering_data <span class="op">=</span> data[[<span class="st">'#CHROM'</span>,<span class="st">'POS'</span>,<span class="st">'AF_M7'</span>, <span class="st">'AF_M5'</span>, <span class="st">'AF_M6'</span>, <span class="st">'AF_M4'</span>,<span class="st">'AF_C3'</span>, <span class="st">'AF_C2'</span>, <span class="st">'AF_C1'</span>]]</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>clustering_data<span class="op">=</span>clustering_data.set_index([<span class="st">'#CHROM'</span>,<span class="st">'POS'</span>])</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>clustering_data <span class="op">=</span> clustering_data.divide(clustering_data.<span class="bu">max</span>(axis<span class="op">=</span><span class="dv">1</span>),axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>clustering_max<span class="op">=</span>clustering_data.<span class="bu">max</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>clustering_min<span class="op">=</span>clustering_data.<span class="bu">min</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>clustering_data <span class="op">=</span> clustering_data[(clustering_max<span class="op">-</span>clustering_min)<span class="op">&gt;</span><span class="fl">0.3</span>]</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'selected variants:'</span>, clustering_data.shape)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>sns.clustermap(clustering_data,cmap<span class="op">=</span><span class="st">'Blues'</span>,figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">6</span>))</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../data/Allele_Frequency_INDELs.svg'</span>)</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'../data/Allele_Frequency_INDELs.png'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>step 1 starting variants: (1121, 11)
+step 2 only snv variants: (610, 11)
+selected variants: (349, 7)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-26-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="distinct-clustering-patterns-in-indels" class="level2">
+<h2 class="anchored" data-anchor-id="distinct-clustering-patterns-in-indels">🧬 Distinct Clustering Patterns in INDELs</h2>
+<p>When applying our clustering strategy to INDELs, we observed strikingly different patterns from those seen with SNVs</p>
+<blockquote class="blockquote">
+<p><em>“The most striking feature of our INDEL analysis is the emergence of sample specific variant clusters”</em> or in ther words, sample specific groups of INDELs</p>
+</blockquote>
+</section>
+<section id="frequency-distribution-analysis-snvs-1" class="level2">
+<h2 class="anchored" data-anchor-id="frequency-distribution-analysis-snvs-1">🔍 Frequency Distribution Analysis SNVs</h2>
+<div id="cell-56" class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">4</span>))</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> pd.Series(data.iloc[:,<span class="dv">4</span>:].values.flatten())</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>tmp.name<span class="op">=</span><span class="st">'INDELs'</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>tmp.plot(kind<span class="op">=</span><span class="st">'hist'</span>,histtype<span class="op">=</span><span class="st">'step'</span>,bins<span class="op">=</span><span class="dv">50</span>,ax<span class="op">=</span>ax,linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Alternate Allele Frequency'</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Counts'</span>)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>mod_hist_legend(ax)</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>clean_axes(ax)</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-27-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="accelerated-indel-evolution" class="level2">
+<h2 class="anchored" data-anchor-id="accelerated-indel-evolution">📊 Accelerated INDEL Evolution</h2>
+<blockquote class="blockquote">
+<p><em>“The predominance of low-frequency INDELs compared to the SNVs frequencies suggests fundamentally different evolutionary dynamics: while SNVs appear to undergo gradual selection toward fixation, INDELs display a pattern of rapid emergence and turnover, generating a diverse array of transient subpopulations within each sample.”</em></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Indels do not appear to reconstruct the infection hystory as well as SNVs</p>
+</blockquote>
+</section>
+</section>
+<section id="genome-wide-distribution-mapping-variants-across-the-cryptosporidium-genome" class="level1">
+<h1>Genome-Wide Distribution: Mapping Variants Across the Cryptosporidium Genome</h1>
+<section id="taking-a-broader-perspective" class="level2">
+<h2 class="anchored" data-anchor-id="taking-a-broader-perspective">🔍 Taking a Broader Perspective</h2>
+<blockquote class="blockquote">
+<p>Having explored the dynamics of both SNVs and INDELs through clustering analyses, we stepped back to examine the holistic picture of where these variants are distributed across the Cryptosporidium genome.</p>
+</blockquote>
+<div id="cell-59" class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">'../data/allele_frequencies.tsv'</span>,sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>make_circos_plot(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-28-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="genomic-distribution-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="genomic-distribution-patterns">🧬 Genomic Distribution Patterns</h2>
+<p>The circular genome plot revealed several striking patterns:</p>
+<blockquote class="blockquote">
+<p><em>“The distribution of variants across the Cryptosporidium genome is strikingly non-random, with clear hotspots of both SNVs and INDELs congregating in specific genomic regions other then close to the telomers as alredy observed in other study”</em></p>
+</blockquote>
+</section>
+<section id="expanding-comparative-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="expanding-comparative-analysis">🧬 Expanding Comparative Analysis</h2>
+<blockquote class="blockquote">
+<p>We plan to compare our samples with other environmental and outbreak-related Cryptosporidium genome sequencing projects.</p>
+</blockquote>
+</section>
+<section id="reproducibility-and-availability" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility-and-availability">Reproducibility and Availability</h2>
+<p>The complete analysis pipeline is available as a Python package in our GitHub repository</p>
+<section id="installation" class="level3">
+<h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install git+https://github.com/mtinti/cryptosporidium_host_adaptation.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dependencies" class="level3">
+<h3 class="anchored" data-anchor-id="dependencies">Dependencies</h3>
+<p>This pipeline was developed and tested with: - samtools (Version: 1.21) - bcftools (Version: 1.21)</p>
+</section>
+<section id="interactive-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-analysis">Interactive Analysis</h3>
+<p>For interactive exploration and reproducibility, we provide Jupyter notebooks accessible through MyBinder. &gt; The computational environment includes all necessary dependencies pre-configured.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mtinti\.github\.io\/cryptosporidium_host_adaptation");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mtinti/cryptosporidium_host_adaptation/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
