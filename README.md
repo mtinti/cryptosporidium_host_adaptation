@@ -315,79 +315,6 @@ plt.show()
 > heterogeneous Cryptosporidium population with multiple strains
 > coexisting”*
 
-Let’s visualize it by chromosome
-
-``` python
-plot_chromosomal_af_values(data)
-plt.show()
-```
-
-![](index_files/figure-commonmark/cell-13-output-1.png)
-
-## Detecting Multiple Strains in a Single Infection
-
-> The allele frequencies we observe don’t cluster at just 0 and 1,
-> suggesting something more complex than a single strain infection. To
-> analyze this pattern, we use Gaussian Mixture Models (GMMs) to
-> determine the most likely number of strains present:
-
-We test different models (1, 2, 3 or 4 strains) We compare models using
-the Akaike Information Criterion (AIC), the lower the better The
-best-fitting model tells us the most likely number of strains
-
-``` python
-k_values, aic_means, aic_stds, best_k, best_models = analyze_frequency_distribution(
-    pd.Series(data.iloc[:,4:].values.flatten()).dropna()[lambda x: (x > 0) & (x < 1)])
-
-print(f"Best number of components: {best_k}")
-
-# Print component details
-
-print("\nComponent Details:")
-# Print component details
-best_gmm = best_models[best_k]
-print("\nComponent Details:")
-for i in range(best_k):
-    mean = best_gmm.means_[i, 0]
-    std = np.sqrt(best_gmm.covariances_[i, 0, 0])
-    weight = best_gmm.weights_[i]
-    print(f"Component {i+1}: Mean = {mean:.3f}, Weight = {weight:.3f}, Std = {std:.3f}")
-
-plt.show()
-```
-
-    Fitting models with k=1
-    Fitting models with k=2
-    Fitting models with k=3
-    Fitting models with k=4
-    Best number of components: 4
-
-    Component Details:
-
-    Component Details:
-    Component 1: Mean = 0.966, Weight = 0.177, Std = 0.021
-    Component 2: Mean = 0.081, Weight = 0.246, Std = 0.051
-    Component 3: Mean = 0.433, Weight = 0.240, Std = 0.171
-    Component 4: Mean = 0.766, Weight = 0.337, Std = 0.114
-
-![](index_files/figure-commonmark/cell-14-output-2.png)
-
-> Our statistical analysis provides strong evidence that multiple
-> strains are present in our sample—likely more than three distinct
-> variants. The Gaussian Mixture Model comparison using AIC scores
-> clearly rejects the single-strain hypothesis. While we can confidently
-> conclude that this is a multi-strain infection, the exact number
-> becomes challenging to determine with absolute certainty. The
-> complexity increases because:
-
-- Multiple strains at different proportions can create overlapping
-  frequency patterns
-- The statistical signal from minor strains may be subtle
-
-For our current purposes, the key finding is that these samples
-definitively contain multiple strains co-existing within the same
-infection.
-
 # 🔬 Focusing on Single Nucleotide Variants
 
 > To gain deeper insight into the evolutionary dynamics of our
@@ -406,45 +333,6 @@ infection.
 │ 6. Visualize dendrogram                                 │
 └─────────────────────────────────────────────────────────┘
 ```
-
-``` python
-data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
-print(f'step 1 starting variants: {data.shape}')
-#data=data[(data['ALT'].str.len()==1)]
-print(f'step 2 only snv variants: {data.shape}')
-#data=data[(data.iloc[:,4:].sum(axis=1)<7)]
-data[data==1]=np.nan
-data[data==0]=np.nan
-print(f'step 3 only snv variants: {data.shape}')
-data.head()
-```
-
-    step 1 starting variants: (1121, 11)
-    step 2 only snv variants: (1121, 11)
-    step 3 only snv variants: (1121, 11)
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-|  | \#CHROM | POS | REF | ALT | AF_M7 | AF_M5 | AF_M4 | AF_M6 | AF_C3 | AF_C2 | AF_C1 |
-|----|----|----|----|----|----|----|----|----|----|----|----|
-| 0 | CM000429 | 60867 | TAAAAAAAAAAGATAT | TAAAAAAAAAAAGATAT | 0.817073 | 0.760870 | 0.855072 | 0.756098 | 0.789474 | 0.869565 | 0.806452 |
-| 1 | CM000429 | 60889 | ACCCCACT | ACCCCCACT | 0.900000 | 0.943396 | 0.942857 | 0.853659 | 0.888889 | 0.970588 | 0.898551 |
-| 2 | CM000429 | 76625 | A | G | 0.269231 | 0.350000 | 0.404762 | 0.314607 | 0.566265 | 0.303571 | 0.437500 |
-| 3 | CM000429 | 82019 | A | T | 0.908163 | 0.705882 | 0.779070 | 0.833333 | 0.628571 | 0.617284 | 0.690141 |
-| 4 | CM000429 | 82192 | G | A | 0.894231 | 0.701493 | 0.666667 | 0.745098 | 0.471698 | 0.619565 | 0.602410 |
-
-</div>
 
 ``` python
 data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
@@ -468,7 +356,7 @@ plt.savefig('../data/Allele_Frequency_SNVs.png')
     step 2 only snv variants: (511, 11)
     selected variants: (129, 7)
 
-![](index_files/figure-commonmark/cell-18-output-2.png)
+![](index_files/figure-commonmark/cell-13-output-2.png)
 
 ## 🧬 Distinct Evolutionary Trajectories Revealed
 
@@ -504,7 +392,7 @@ fig, ax, inertia_values, silhouette_values = kmeans_cluster_analysis(
 clean_axes(ax)
 ```
 
-![](index_files/figure-commonmark/cell-19-output-1.png)
+![](index_files/figure-commonmark/cell-14-output-1.png)
 
 ## Validation Results Support Three Main Clusters
 
@@ -545,7 +433,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-20-output-1.png)
+![](index_files/figure-commonmark/cell-15-output-1.png)
 
 ## Evolutionary trajectories :
 
@@ -700,7 +588,7 @@ plt.ylim(0,1.1)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-25-output-1.png)
+![](index_files/figure-commonmark/cell-20-output-1.png)
 
 ### Key Variant Trajectories
 
@@ -743,7 +631,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-28-output-1.png)
+![](index_files/figure-commonmark/cell-23-output-1.png)
 
 ## From SNVs to INDELs: Exploring Different Variant Dynamics
 
@@ -784,7 +672,7 @@ plt.savefig('../data/Allele_Frequency_INDELs.png')
     step 2 only snv variants: (610, 11)
     selected variants: (349, 7)
 
-![](index_files/figure-commonmark/cell-30-output-2.png)
+![](index_files/figure-commonmark/cell-25-output-2.png)
 
 ## 🧬 Distinct Clustering Patterns in INDELs
 
@@ -809,7 +697,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-31-output-1.png)
+![](index_files/figure-commonmark/cell-26-output-1.png)
 
 ## 📊 Accelerated INDEL Evolution
 
@@ -833,7 +721,7 @@ data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
 make_circos_plot(data)
 ```
 
-![](index_files/figure-commonmark/cell-32-output-1.png)
+![](index_files/figure-commonmark/cell-27-output-1.png)
 
 ## 🧬 Genomic Distribution Patterns
 
