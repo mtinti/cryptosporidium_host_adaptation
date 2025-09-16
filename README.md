@@ -353,6 +353,7 @@ for i, col in enumerate(['AF_M7', 'AF_M5', 'AF_M6', 'AF_M4','AF_C3', 'AF_C2', 'A
 axes[-1].set_axis_off()
 plt.tight_layout()
 plt.savefig('Chromosome_Frequency.png')
+plt.savefig('Chromosome_Frequency.svg')
 ```
 
 ![](index_files/figure-commonmark/cell-11-output-1.png)
