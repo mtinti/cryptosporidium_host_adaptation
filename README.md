@@ -330,6 +330,33 @@ plt.show()
 └─────────────────────────────────────────────────────────┘
 ```
 
+## Prepare data and visualize SNVs frequencies
+
+``` python
+from ProjectUtility.core import clean_axes
+import numpy as np
+fig,axes =plt.subplots(ncols=4,nrows=2,figsize=(12,4))
+axes=axes.flatten()
+for i, col in enumerate(['AF_M7', 'AF_M5', 'AF_M6', 'AF_M4','AF_C3', 'AF_C2', 'AF_C1']):
+    #col = 'AF_'+run
+    run = col.split('_')[1]
+    tmp = data.copy()
+    tmp = tmp[(tmp['REF'].str.len()==1) & (tmp['ALT'].str.len()==1)]
+    tmp = tmp[['#CHROM', 'POS', col]]
+    tmp = tmp[tmp[col]>0]
+    title = col#mapping.get(run,run)
+    plot_chromosomal_af_values2(tmp, axes[i])
+    axes[i].set_title(col.split('_')[1])   
+    axes[i].set_ylabel('Frequency',fontsize=12)
+    axes[i].set_xlabel('Chromosome', labelpad=10,fontsize=12)
+        #clean_axes(axes[new_i])
+axes[-1].set_axis_off()
+plt.tight_layout()
+plt.savefig('Chromosome_Frequency.png')
+```
+
+![](index_files/figure-commonmark/cell-11-output-1.png)
+
 ## Prepare data and visualize upset plot
 
 ``` python
@@ -369,9 +396,9 @@ plt.show()
     step 2 only snv variants: (511, 11)
     (511, 7)
 
-![](index_files/figure-commonmark/cell-11-output-2.png)
+![](index_files/figure-commonmark/cell-12-output-2.png)
 
-## Visualizing Single Nucleotide Variants Frequencies
+## Visualizing Selected SNVs Frequencies
 
 ``` python
 data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
@@ -398,34 +425,7 @@ plt.savefig('../data/Allele_Frequency_SNVs.png')
     step 2 only snv variants: (511, 11)
     selected variants: (129, 7)
 
-![](index_files/figure-commonmark/cell-12-output-2.png)
-
-## Prepare data and visualize SNVs frequencies
-
-``` python
-from ProjectUtility.core import clean_axes
-import numpy as np
-fig,axes =plt.subplots(ncols=4,nrows=2,figsize=(12,4))
-axes=axes.flatten()
-for i, col in enumerate(['AF_M7', 'AF_M5', 'AF_M6', 'AF_M4','AF_C3', 'AF_C2', 'AF_C1']):
-    #col = 'AF_'+run
-    run = col.split('_')[1]
-    tmp = data.copy()
-    tmp = tmp[(tmp['REF'].str.len()==1) & (tmp['ALT'].str.len()==1)]
-    tmp = tmp[['#CHROM', 'POS', col]]
-    tmp = tmp[tmp[col]>0]
-    title = col#mapping.get(run,run)
-    plot_chromosomal_af_values2(tmp, axes[i])
-    axes[i].set_title(col.split('_')[1])   
-    axes[i].set_ylabel('Frequency',fontsize=12)
-    axes[i].set_xlabel('Chromosome', labelpad=10,fontsize=12)
-        #clean_axes(axes[new_i])
-axes[-1].set_axis_off()
-plt.tight_layout()
-plt.savefig('Chromosome_Frequency.png')
-```
-
-![](index_files/figure-commonmark/cell-15-output-1.png)
+![](index_files/figure-commonmark/cell-13-output-2.png)
 
 ## 🧬 Variant Observations
 
@@ -467,7 +467,7 @@ data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
 make_circos_plot(data)
 ```
 
-![](index_files/figure-commonmark/cell-16-output-1.png)
+![](index_files/figure-commonmark/cell-14-output-1.png)
 
 ## 🧬 Genomic Distribution Patterns
 
