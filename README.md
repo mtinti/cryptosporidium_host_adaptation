@@ -468,9 +468,9 @@ The hierarchical clustering dendrogram revealed several patterns:
 
 ## 🔍 Taking a Broader Perspective
 
-> Having explored the dynamics of both SNVs through clustering analyses,
-> we stepped back to examine the holistic picture of where these
-> variants are distributed across the Cryptosporidium genome.
+> Having explored the dynamics SNVs through clustering analysis, we step
+> back to examine the holistic picture of where variants (SNVs and
+> INDELs) are distributed across the Cryptosporidium genome.
 
 ``` python
 data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
