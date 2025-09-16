@@ -413,98 +413,6 @@ plt.show()
 ## Prepare data and visualize SNVs frequencies
 
 ``` python
-def plot_chromosomal_af_values2(df, ax=None):
-    # Get list of all AF columns
-    af_columns = [col for col in df.columns if col.startswith('AF_')]
-    
-    # Use provided axis or create one if not provided
-    if ax is None:
-        plt.figure(figsize=(8, 4))
-        ax = plt.gca()
-    
-    # Get unique chromosomes and assign colors to AF columns
-    chromosomes = df['#CHROM'].unique()
-    colors = plt.cm.tab10(np.linspace(0, 1, len(af_columns)))
-    
-    # Track chromosome boundaries for labeling
-    chrom_boundaries = {}
-    current_x = 0
-    margin = 1000  # Margin to prevent overlap with y-axis
-    current_x += margin
-    
-    # Process each chromosome
-    for chrom in chromosomes:
-        # Get data for this chromosome
-        chrom_data = df[df['#CHROM'] == chrom]
-        
-        # Sort by position
-        chrom_data = chrom_data.sort_values('POS')
-        
-        # Get minimum position for this chromosome
-        min_pos = chrom_data['POS'].min()
-        
-        # Store starting x-coordinate for this chromosome
-        chrom_start = current_x
-        
-        # Plot each AF column for this chromosome
-        for i, af_col in enumerate(af_columns):
-            # Get x-coordinates (adjusted positions)
-            x = chrom_data['POS'] - min_pos + current_x
-            y = chrom_data[af_col]
-            
-            # Plot scatter points only (no lines)
-            ax.scatter(x, y, color=colors[i], alpha=0.7, s=5, 
-                      label=af_col if chrom == chromosomes[0] else "")
-        
-        # Update current_x for next chromosome
-        max_pos = chrom_data['POS'].max()
-        current_x = current_x + (max_pos - min_pos) + 1000  # Add gap between chromosomes
-        
-        # Store ending boundary
-        chrom_boundaries[chrom] = (chrom_start, current_x - 1000)
-    
-    # Add chromosome boxes and labels
-    y_box_position = -0.05
-    box_height = 0.02
-    
-    for i, (chrom, (start, end)) in enumerate(chrom_boundaries.items()):
-        # Get short chromosome name (last 3 digits)
-        
-        short_name = str(chrom)[-3:] if len(str(chrom)) > 3 else str(chrom)
-        
-        # Add box - make them more visible
-        center = (start + end) / 2
-        width = end - start
-        rect = plt.Rectangle((start, y_box_position), width, box_height, 
-                           facecolor='gray', edgecolor='black', linewidth=1.5, alpha=0.1,
-                           transform=ax.transData)
-        ax.add_patch(rect)
-        
-        # Add label below the box
-        ax.text(center, y_box_position - 0.03, i, ha='center', va='top', 
-                fontsize=10, fontweight='bold', transform=ax.transData)
-    
-    # Set plot limits and labels
-    ax.set_ylim(-0.1, 1.05)  # Extend lower limit to see boxes clearly
-    ax.set_xlim(0, current_x)
-    ax.set_ylabel('Allele Frequency', fontsize=12)
-    ax.set_title('Allele Frequencies Across Chromosomes', fontsize=14)
-    
-    # Remove all axes except left y-axis
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-    ax.spines['bottom'].set_visible(False)
-    xlim = ax.get_xlim()
-    # Remove x ticks
-    ax.set_xticks([])
-    
-    # Add legend outside plot
-    #ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-    
-    # No return statement
-```
-
-``` python
 from ProjectUtility.core import clean_axes
 import numpy as np
 fig,axes =plt.subplots(ncols=4,nrows=2,figsize=(12,4))
@@ -527,18 +435,13 @@ plt.tight_layout()
 plt.savefig('Chromosome_Frequency.png')
 ```
 
-![](index_files/figure-commonmark/cell-15-output-1.png)
+![](index_files/figure-commonmark/cell-14-output-1.png)
 
 ## 🧬 Variant Observations
 
 1.  **No novel variant identified**: \> “Using our filtering strategy we
     could not detect SNV unique to one sample, but only frequency
-    variations of the initial variant pool.” This observation has
-    significant implications for outbreak investigations. Samples that
-    are closely linked in a transmission chain may be more accurately
-    characterized by analyzing the relative frequencies of variants
-    rather than simply detecting their presence or absence under a
-    diploid assumption.
+    variations of the initial variant pool.”
 
 ## 🧬 Distinct Evolutionary Trajectories Revealed
 
@@ -574,7 +477,7 @@ data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
 make_circos_plot(data)
 ```
 
-![](index_files/figure-commonmark/cell-16-output-1.png)
+![](index_files/figure-commonmark/cell-15-output-1.png)
 
 ## 🧬 Genomic Distribution Patterns
 
