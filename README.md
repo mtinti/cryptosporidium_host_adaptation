@@ -330,6 +330,47 @@ plt.show()
 └─────────────────────────────────────────────────────────┘
 ```
 
+## Prepare data and visualize upset plot
+
+``` python
+from upsetplot import UpSet
+from upsetplot import from_contents
+import matplotlib.pyplot as plt
+
+data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
+print(f'step 1 starting variants: {data.shape}')
+data=data[(data['ALT'].str.len()==1)]
+print(f'step 2 only snv variants: {data.shape}')
+
+clustering_data = data[['#CHROM','POS','AF_M7', 'AF_M5', 'AF_M6', 'AF_M4','AF_C3', 'AF_C2', 'AF_C1']]
+clustering_data=clustering_data.set_index(['#CHROM','POS'])
+clustering_data.columns = ['M7', 'M5', 'M6', 'M4','C3', 'C2', 'C1']
+print(clustering_data.shape)
+clustering_data=clustering_data.reset_index(drop=True)
+upset_data = (clustering_data>0).reset_index()
+upset_data=upset_data.set_index(['M7', 'M5', 'M6', 'M4','C3', 'C2', 'C1'])
+upset_data.columns=['variant']
+#upset_data.head()
+
+ax_dict = UpSet(upset_data, 
+                subset_size="count",
+                sort_by='input',
+                sort_categories_by='input',
+                show_counts=True,
+               ).plot()
+nvariants = upset_data.shape[0]
+ax_dict['intersections'].set_title(f'N variants: {nvariants}',y=1.1)
+plt.savefig('../data/Upset_all.png')
+plt.savefig('../data/Upset_all.svg')
+plt.show()
+```
+
+    step 1 starting variants: (1121, 11)
+    step 2 only snv variants: (511, 11)
+    (511, 7)
+
+![](index_files/figure-commonmark/cell-11-output-2.png)
+
 ## Visualizing Single Nucleotide Variants Frequencies
 
 ``` python
@@ -357,58 +398,7 @@ plt.savefig('../data/Allele_Frequency_SNVs.png')
     step 2 only snv variants: (511, 11)
     selected variants: (129, 7)
 
-![](index_files/figure-commonmark/cell-11-output-2.png)
-
-## Prepare data and visualize upset plot
-
-``` python
-upset_data = (clustering_data>0).reset_index()
-upset_data=upset_data.set_index(['M7', 'M5', 'M6', 'M4','C3', 'C2', 'C1'])
-upset_data.columns=['variant']
-upset_data.head()
-```
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-|      |      |      |      |      |      |      | variant |
-|------|------|------|------|------|------|------|---------|
-| M7   | M5   | M6   | M4   | C3   | C2   | C1   |         |
-| True | True | True | True | True | True | True | 0       |
-|      |      |      |      |      |      | True | 1       |
-|      |      |      |      |      |      | True | 2       |
-|      |      |      |      |      |      | True | 3       |
-|      |      |      |      |      |      | True | 4       |
-
-</div>
-
-``` python
-from upsetplot import UpSet
-from upsetplot import from_contents
-import matplotlib.pyplot as plt
-ax_dict = UpSet(upset_data, 
-                subset_size="count",
-                sort_by='input',
-                sort_categories_by='input',
-                show_counts=True,
-               ).plot()
-nvariants = upset_data.shape[0]
-ax_dict['intersections'].set_title(f'N variants: {nvariants}',y=1.1)
-plt.savefig('upset_all.png')
-plt.show()
-```
-
-![](index_files/figure-commonmark/cell-13-output-1.png)
+![](index_files/figure-commonmark/cell-12-output-2.png)
 
 ## Prepare data and visualize SNVs frequencies
 
@@ -435,7 +425,7 @@ plt.tight_layout()
 plt.savefig('Chromosome_Frequency.png')
 ```
 
-![](index_files/figure-commonmark/cell-14-output-1.png)
+![](index_files/figure-commonmark/cell-15-output-1.png)
 
 ## 🧬 Variant Observations
 
@@ -477,7 +467,7 @@ data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
 make_circos_plot(data)
 ```
 
-![](index_files/figure-commonmark/cell-15-output-1.png)
+![](index_files/figure-commonmark/cell-16-output-1.png)
 
 ## 🧬 Genomic Distribution Patterns
 
