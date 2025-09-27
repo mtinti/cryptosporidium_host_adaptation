@@ -8,6 +8,13 @@
 > [![](https://img.shields.io/badge/Delightful%20data-analysis-green?style=flat.png)](https://mtinti.github.io/cryptosporidium_host_adaptation/)
 > [![](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=whitet.png)](https://github.com/mtinti/cryptosporidium_host_adaptation)
 
+``` python
+data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
+make_circos_plot(data)
+```
+
+![](index_files/figure-commonmark/cell-2-output-1.png)
+
 ## The Origin: Strain M4
 
 Our journey begins with a single infected mouse (M4), harboring a
@@ -303,7 +310,7 @@ clean_axes(ax)
 plt.show()
 ```
 
-![](index_files/figure-commonmark/cell-10-output-1.png)
+![](index_files/figure-commonmark/cell-11-output-1.png)
 
 - **Expected in a population**: Frequencies clustered at extremes (0 or
   1)
@@ -356,7 +363,7 @@ plt.savefig('../data/Chromosome_Frequency.png')
 plt.savefig('../data/Chromosome_Frequency.svg')
 ```
 
-![](index_files/figure-commonmark/cell-11-output-1.png)
+![](index_files/figure-commonmark/cell-12-output-1.png)
 
 ## Prepare data and visualize upset plot
 
@@ -397,7 +404,12 @@ plt.show()
     step 2 only snv variants: (511, 11)
     (511, 7)
 
-![](index_files/figure-commonmark/cell-12-output-2.png)
+![](index_files/figure-commonmark/cell-14-output-2.png)
+
+``` python
+```
+
+    '2.3.0'
 
 ## Visualizing Selected SNVs Frequencies
 
@@ -426,7 +438,7 @@ plt.savefig('../data/Allele_Frequency_SNVs.png')
     step 2 only snv variants: (511, 11)
     selected variants: (129, 7)
 
-![](index_files/figure-commonmark/cell-13-output-2.png)
+![](index_files/figure-commonmark/cell-16-output-2.png)
 
 ## 🧬 Variant Observations
 
@@ -468,7 +480,7 @@ data=pd.read_csv('../data/allele_frequencies.tsv',sep='\t')
 make_circos_plot(data)
 ```
 
-![](index_files/figure-commonmark/cell-14-output-1.png)
+![](index_files/figure-commonmark/cell-17-output-1.png)
 
 ## 🧬 Genomic Distribution Patterns
 
